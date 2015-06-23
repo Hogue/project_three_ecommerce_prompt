@@ -14,7 +14,10 @@
     "jade": "^1.9.2",
     "mongoose": "^4.0.6",
     "morgan": "^1.5.3",
-    "serve-favicon": "^2.2.1"
+    "nib": "^1.1.0",
+    "serve-favicon": "^2.2.1",
+    "stripe": "^3.5.0",
+    "stylus": "^0.51.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
