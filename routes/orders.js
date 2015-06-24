@@ -20,6 +20,21 @@ router.get('/orders/:id', function(req, res, next) {
 });
 
 //GET all orders by one user
+//Note: check for errs
+// - may need req.params.user.id instead?
+router.get('user/:id/orders', function(req, res, next) {
+  Order.find({
+    user: req.user.id
+  }, function(error, orders) {
+    if (error) {
+      console.log(error);
+      res.send('Error; cannot GET orders by user ID')
+    } else {
+      res.json(order);
+      res.status(200);
+    }
+  });
+});
 
 //POST new order
 router.post('/orders', function(req, res, next) {
@@ -32,8 +47,9 @@ router.post('/orders', function(req, res, next) {
   });
 });
 
-//PATCH (or is PUT better?) new individual book on an order
-
+//PATCH new individual book on an order
+//Note: is PUT better? Check for errs
+// - esp. removing old Books from the order when adding new ones.
 apiRouter.patch('/orders/:id', function(req, res) {
   Contact.findByIdAndUpdate(req.params.id, {
     $set: req.body
