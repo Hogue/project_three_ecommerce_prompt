@@ -1,3 +1,4 @@
+var config = require('./config');
 var express = require('express');
 var async = require('async');
 var mongoose = require('mongoose');
@@ -19,7 +20,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var books = require('./routes/books.js');
 
-mongoose.connect('mongodb://localhost/nozama');
+mongoose.connect(config.mongo.dbUrl);
 
 var app = express();
 
