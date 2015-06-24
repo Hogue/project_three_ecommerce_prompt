@@ -30,7 +30,10 @@ var bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  price: Number,
+  price: {
+    type: Number,
+    require: true
+  },
   genre: {
     type: String,
     required: true,
