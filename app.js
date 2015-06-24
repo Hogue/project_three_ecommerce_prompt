@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 var jade = require('jade');
 var fs = require('fs');
 var stylus = require('stylus');

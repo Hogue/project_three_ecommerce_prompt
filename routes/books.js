@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 var Book = require('../models/books.js');
 
 router.get('/books', function(req, res) {
@@ -12,6 +14,43 @@ router.get('/books', function(req, res) {
   });
 });
 
+router.get('/books/:id', function(req, res) {
+  Book.find({
+    _id: req.params.id
+  }, function(err, book){
+    if(err) {
+      console.log(err);
+      set.sendStatus(404);
+    }
+    res.json(book);
+  });
+});
+
+router.post('/books', jsonParser);
+router.post('/books', bodyParser());
+router.post('/books', function(req, res) {
+  Book.create(req.body, function(error, book) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
+
+router.patch('/books/:id', jsonParser);
+router.patch('/books/:id', bodyParser());
+router.patch('/books/:id', function(req, res) {
+  Book.findByIdAndUpdate(req.params.id, req.body, function(error, book) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
 
 // router.get('/', function(req, res){
 //   res.send("It worked!");
