@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var Book = require('../models/books.js');
 
-router.get('/books', function(req, res) {
+router.get('/', function(req, res) {
   Book.find({},function(err, bookList) {
     if(err) {
       res.sendStatus(404);
@@ -14,7 +14,7 @@ router.get('/books', function(req, res) {
   });
 });
 
-router.get('/books/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   Book.find({
     _id: req.params.id
   }, function(err, book){
@@ -26,9 +26,9 @@ router.get('/books/:id', function(req, res) {
   });
 });
 
-router.post('/books', jsonParser);
-router.post('/books', bodyParser());
-router.post('/books', function(req, res) {
+router.post('/', jsonParser);
+router.post('/', bodyParser());
+router.post('/', function(req, res) {
   Book.create(req.body, function(error, book) {
     if (error) {
       console.log(error);
@@ -39,9 +39,9 @@ router.post('/books', function(req, res) {
   });
 });
 
-router.patch('/books/:id', jsonParser);
-router.patch('/books/:id', bodyParser());
-router.patch('/books/:id', function(req, res) {
+router.patch('/:id', jsonParser);
+router.patch('/:id', bodyParser());
+router.patch('/:id', function(req, res) {
   Book.findByIdAndUpdate(req.params.id, req.body, function(error, book) {
     if (error) {
       console.log(error);
