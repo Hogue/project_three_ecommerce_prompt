@@ -1,4 +1,5 @@
-var config = require('./config');
+var config = require('./config/');
+
 var express = require('express');
 var async = require('async');
 var mongoose = require('mongoose');

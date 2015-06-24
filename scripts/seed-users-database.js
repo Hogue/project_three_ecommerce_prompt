@@ -1,9 +1,9 @@
+var config = require('../config');
 var mongoose = require('mongoose');
 var async = require('async');
 var User = require('../models/users.js');
-var dbName = 'nozama'; // Set name of database
-var mongoUrl = 'mongodb://localhost/' + dbName; // Add suffix to the mongodb://localhost
-mongoose.connect(mongoUrl); //Connect to the actual mongo DB
+
+mongoose.connect(config.mongo.dbUrl);
 
 // mongoose.connect('mongodb://localhost/nozama');
 

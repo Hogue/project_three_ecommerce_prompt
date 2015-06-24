@@ -14,7 +14,7 @@ config.cookieOptions = {};
 // mongo database
 
 config.mongo = {};
-config.mongo.dbUrl = 'mongodb://localhost/nozama';
+config.mongo.dbUrl = 'mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama';
 
 // authentication keys & such that may vary from environment
 // to environment but must never be committed to github
