@@ -1,12 +1,25 @@
 var express = require('express');
+var async = require('async');
+var mongoose = require('mongoose');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+var jade = require('jade');
+var fs = require('fs');
+var stylus = require('stylus');
+var nib = require('nib');
+var util = require('util');
+
+var Book = require('./models/books.js');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var books = require('./routes/books.js');
+
+mongoose.connect('mongodb://localhost/nozama');
 
 var app = express();
 
@@ -24,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/', books);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,6 +68,15 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+var server = app.listen(3000, function(){
+  var host = server.address().address;
+  var port = server.address().port;
+
+  // %s is a place holder that we replace with 'host' and 'port'
+  // it says where %s is, put the first argument, then replace the second %s with the second argument (host, port — are the two arguments)
+  console.log("Example app listening at http://%s:%s", host, port);
 });
 
 
