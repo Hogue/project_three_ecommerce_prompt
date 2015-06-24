@@ -3,3 +3,4 @@ grunt
 .idea
 *.sublime-workspace
 *.sublime-project
+*.log
