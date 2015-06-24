@@ -1,5 +1,5 @@
 // Orders Schema
-// Attributes:
+// Attributes: user, books, date, purchased
 // Users: has many Orders
 // Orders: has many Books
 
@@ -15,7 +15,7 @@ var orderSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  sent: {
+  purchased: {
     type: Boolean,
     default: false,
     required: true,
