@@ -5,6 +5,10 @@ router.get('/', function(req, res){
   res.send("It worked!");
 });
 
+router.post('/', function(req, res){
+  res.send('post worked!');
+});
+
 router.route('/:book_id')
   .all(function(req, res, next) {
     contact_id = req.params.book_id;
