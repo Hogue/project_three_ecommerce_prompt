@@ -1,8 +1,10 @@
+var config = require('../config');
 var async = require('async');
 var mongoose = require('mongoose');
 
 // connect to the contacts DB.
-mongoose.connect('mongodb://localhost/nozama');
+console.log(config);
+mongoose.connect(config.mongo.dbUrl);
 
 // Contact is the constructor function for the Contact model.
 var Book = require('../models/books.js');
