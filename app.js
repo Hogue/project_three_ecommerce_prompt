@@ -12,9 +12,10 @@ var stylus = require('stylus');
 var nib = require('nib');
 var util = require('util');
 
+var Book = require('./models/books.js');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var Book = require('./models/books.js');
 var books = require('./routes/books.js');
 
 mongoose.connect('mongodb://localhost/nozama');
@@ -35,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users/', users);
-app.use('/books/', books)
+app.use('/books/', books);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
