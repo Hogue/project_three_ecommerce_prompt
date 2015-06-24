@@ -9,8 +9,8 @@ var Book = require('./books.js');
 var User = require('./users.js');
 
 var orderSchema = new mongoose.Schema({
-  user: [userSchema],
-  books: [bookSchema],
+  user: [User],
+  books: [Book],
   date: {
     type: Date,
     required: true
