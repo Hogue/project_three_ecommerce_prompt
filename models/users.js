@@ -1,14 +1,22 @@
 //==============================================
 //          USER SCHEMA SETUP
 //==============================================
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+  Schema = mongoose.Schema,
+  Order = require('./orders.js');
 
-var orderSchema = new mongoose.Schema({});
-var userSchema = new mongoose.Schema({
+var userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
+    index: {
+      unique: true
+    }
   },
+  // password: {
+  //   type: String,
+  //   required: true
+  // },
   nameFirst: {
     type: String,
     required: true
@@ -17,7 +25,20 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  Orders: [orderSchema]
+  Orders: [Order.schema]
+});
+
+userSchema.virtual('library').get(function() {
+  var library = [];
+  this.Orders.forEach(function(order){
+    order.books.forEach(function(book){
+      library.push(book);
+    });
+  });
+});
+
+userSchema.virtual('fullName').get(function() {
+  return this.nameFirst + ' ' + this.nameLast;
 });
 
 //create model
