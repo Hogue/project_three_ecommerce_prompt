@@ -48,6 +48,8 @@ router.get('user/:id/orders', function(req, res, next) {
 });
 
 //POST new order
+router.post('/orders', jsonParser);
+router.post('/orders', bodyParser());
 router.post('/orders', function(req, res, next) {
   Order.create({
     user, books, date, purchased
@@ -61,6 +63,9 @@ router.post('/orders', function(req, res, next) {
 //PATCH new individual book on an order
 //Note: is PUT better? Check for errs
 // - esp. removing old Books from the order when adding new ones.
+
+router.post('/orders', jsonParser);
+router.post('/orders', bodyParser());
 apiRouter.patch('/orders/:id', function(req, res) {
   Contact.findByIdAndUpdate(req.params.id, {
     $set: req.body
