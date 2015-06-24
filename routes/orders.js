@@ -1,7 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var Order = require('../models/orders.js');
 
 router.get('/', jsonParser);
+// GET orders listing
+router.get('/', function(req, res) {
+  Order.find({}, function(err, orderList) {
+    if (err) {
+      res.sendStatus(404);
+    }
+    res.json(orderList);
+    res.status(200);
+  });
+});
 
 // GET individual orders listing
 
