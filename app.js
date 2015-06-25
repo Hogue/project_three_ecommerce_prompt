@@ -44,6 +44,12 @@ app.use('/users', users);
 app.use('/books', books);
 app.use('/orders', orders);
 
+// This uses express-generated middleware that serves static files
+// It looks for a directory at the path we pass in.
+// If the url matches anything in the directory, it will be served
+// Else: Next fires, and moves on to next handler
+app.use(express.static(path.join(__dirname, 'public')));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -74,8 +80,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 var server = app.listen(3000, function() {
   var host = server.address().address;
