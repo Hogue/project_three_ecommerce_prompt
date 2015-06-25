@@ -13,10 +13,10 @@ var userSchema = new Schema({
       unique: true
     }
   },
-  // password: {
-  //   type: String,
-  //   required: true
-  // },
+  password: {
+    type: String,
+    required: true
+  },
   nameFirst: {
     type: String,
     required: true
@@ -37,8 +37,18 @@ userSchema.virtual('library').get(function() {
   });
 });
 
-userSchema.virtual('fullName').get(function() {
+userSchema.virtual('nameFull').get(function() {
   return this.nameFirst + ' ' + this.nameLast;
+});
+
+userSchema.virtual('orderHistory').get(function() {
+  ordersList = [];
+  Orders.forEach(function(order){
+    if (order.date < Date.now()) {
+      ordersList.push(order);
+    }
+  });
+  return ordersList;
 });
 
 //create model
