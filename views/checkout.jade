@@ -1,31 +1,26 @@
-html
-  head
-    title= 'Nozama Books!'
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://code.jquery.com/jquery-2.1.4.min.js')
-    script(src='https://js.stripe.com/v2/')
-        //- This identifies your website in the createToken call below
-    script(Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy'))
+extend layout
+block content
+  h1 Checkout Page
+  p #{userNameFull}
 
-  body
-
-    h1 Checkout Page
-    p #{userNameFull}
-
-    form(action="" method="POST" id="payment-form")
-      span(class="payment-errors")
-      div(class="form-row")
+  form(action="" method="POST" id="payment-form")
+    span(class="payment-errors")
+    div(class="form-row")
+    label
+      span Card Number
+      input(type="text", size="20" data-stripe="number")
+    div(class="form-row")
       label
-          span Card Number
-          input(type="text", size="20" data-stripe="number")
-      div(class="form-row")
-        label
-          span CVC
-          input(type="text", size="4" data-stripe="cvc")
-      div(class="form-row")
-        label
-          span Expiration (MM/YYYY)
-          input(type="text", size="2" data-stripe="exp-month")
-          span /
-          input(type="text", size="4" data-stripe="exp-year")
-      button(type="submit") Submit Payment
+        span CVC
+        input(type="text", size="4" data-stripe="cvc")
+    div(class="form-row")
+      label
+        span Expiration (MM/YYYY)
+        input(type="text", size="2" data-stripe="exp-month")
+        span /
+        input(type="text", size="4" data-stripe="exp-year")
+    button(type="submit") Submit Payment
+
+  script(src='https://js.stripe.com/v2/')
+    //- This identifies your website in the createToken call below
+  script(Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy'))
