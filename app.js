@@ -17,8 +17,8 @@ var util = require('util');
 
 var Book = require('./models/books.js');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/index.js');
+var users = require('./routes/users.js');
 var books = require('./routes/books.js');
 var orders = require('./routes/orders.js');
 
@@ -30,13 +30,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -74,6 +71,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 var server = app.listen(3000, function(){
   var host = server.address().address;
   var port = server.address().port;
@@ -82,6 +81,5 @@ var server = app.listen(3000, function(){
   // it says where %s is, put the first argument, then replace the second %s with the second argument (host, port — are the two arguments)
   console.log("Example app listening at http://%s:%s", host, port);
 });
-
 
 module.exports = app;
