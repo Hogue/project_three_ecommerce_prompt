@@ -16,6 +16,8 @@ var nib = require('nib');
 var util = require('util');
 
 var Book = require('./models/books.js');
+var Order = require('./models/orders.js');
+var User = require('./models/users.js');
 
 var routes = require('./routes/index.js');
 var users = require('./routes/users.js');
@@ -32,7 +34,9 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 app.use('/', routes);
@@ -73,7 +77,7 @@ app.use(function(err, req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-var server = app.listen(3000, function(){
+var server = app.listen(3000, function() {
   var host = server.address().address;
   var port = server.address().port;
 

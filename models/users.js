@@ -25,7 +25,7 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  Orders: [Order.schema]
+  Orders: [Order]
 });
 
 userSchema.virtual('library').get(function() {
