@@ -36,7 +36,8 @@ var addUser = function(done) {
   User.create({
     email: 'drewkakes@gmail.com',
     nameFirst: 'Andrew',
-    nameLast: 'Ellis'
+    nameLast: 'Ellis',
+    password: 'abc123'
   }, done);
 };
 

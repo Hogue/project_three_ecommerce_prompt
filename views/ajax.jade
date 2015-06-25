@@ -1,0 +1,77 @@
+script(type='text/javascript').
+  $(document).ready(function(){
+
+    $('get-book-d').on('click', function(event) {
+      event.preventDefault();
+
+      })
+
+    $('form[name="add-book"]').on('submit', function(event){
+      event.preventDefault();
+      var book = {
+      title: $('input[name="book-title"]').val(),
+      author: $('input[name="book-author"]').val(),
+      price: $('input[name="book-price"]').val(),
+      genre: $('input[name="book-genre"]').val(),
+      isbn: $('input[name="book-isbn"]').val()
+      };
+      $.ajax({
+        method: 'POST',
+        url: 'http://localhost:3000/books',
+        data: JSON.stringify(book),
+        contentType: "application/json; charset=utf-8"
+      }).done(function(res){
+        $('.books').append(res);
+      });
+    })
+
+    $('form[name="add-user"]').on('submit', function(event){
+      event.preventDefault();
+      if($('input[name="user-password"]').val() === $('input[name="user-password-conf"]').val()) {
+        var user = {
+        nameFirst: $('input[name="user-first-name"]').val(),
+        nameLast: $('input[name="user-last-name"]').val(),
+        email: $('input[name="user-email"]').val(),
+        password: $('input[name="user-password"]').val()
+        };
+        $.ajax({
+          method: 'POST',
+          url: 'http://localhost:3000/users',
+          data: JSON.stringify(user),
+          contentType: "application/json; charset=utf-8"
+        }).done(function(res){
+          $('.users').append(res);
+        });
+      }
+    });
+
+    $('form[name="add-order"]').on('submit', function(event){
+      event.preventDefault();
+        var order = {
+        date: Date.now(),
+        purchased: false
+        };
+        $.ajax({
+          method: 'POST',
+          url: 'http://localhost:3000/orders',
+          data: JSON.stringify(order),
+          contentType: "application/json; charset=utf-8"
+        }).done(function(res){
+          $('.users').append(res);
+        });
+    });
+
+    //- $('input[name="delete-me"]').on('click', function(event){
+    //-   event.preventDefault();
+    //-   var id = $(this).data('id');
+    //-   var idURL = config.mongo.dbUrl;
+    //-   $.ajax({
+    //-     url: idURL,
+    //-     method: 'DELETE',
+    //-   })
+    //-   .done(function() {
+    //-     var selector = 'div[data-book-id="'+id+'"';
+    //-     $(selector).remove();
+    //-   });
+    //-   });
+  });
