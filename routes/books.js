@@ -52,6 +52,21 @@ router.patch('/:id', function(req, res) {
   });
 });
 
+router.delete('/:id', function(req, res) {
+  Book.remove({
+    _id: req.params.id
+  }, function(error) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+
+
 // router.get('/', function(req, res){
 //   res.send("It worked!");
 // });
