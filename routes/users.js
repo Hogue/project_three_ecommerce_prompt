@@ -85,9 +85,4 @@ router.patch('/:id', function(req, res){
   });
 });
 
-router.post('/', function(req, res) {
-  res.send('Attempting to Post');
-});
-
-
 module.exports = router;

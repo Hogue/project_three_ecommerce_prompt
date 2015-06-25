@@ -1,39 +1,43 @@
-h1 Add New Book!
-form(name="add-book")
-  ul
-    li Title:
-    input(type="text", name="book-title")
-    li Author:
-    input(name="book-author")
-    li Price:
-    input(type="text", name="book-price")
-    li Genre: ['childrens', 'classics', 'fantasy', 'fiction', 'history', 'philosophy', 'programming', 'science fiction']
-    input(type="text", name="book-genre")
-    li ISBN:
-    input(type="text", name="book-isbn")
-  input(type="submit", value="Add Book")
 
-h1 Add New User!
-form(name="add-user")
-  ul
-    li First Name:
-    input(name="user-first-name")
-    li LastName:
-    input(name="user-last-name")
-    li Email:
-    input(name="user-email")
-    li password:
-    input(type="password", name="user-password")
-    li password confirm:
-    input(type="password", name="user-password-conf")
-  input(type="submit", value="Add User")
+.row
+  .col.s4
+    h4 Add New Book!
+
+    input(type="text", id="book-title")
+    label(for="book-title") Title
+    input(type="text", id="book-author")
+    label(for="book-author") Author
+    input(type="text", id="book-price")
+    label(for="book-price") Price
+    input(type="text", id="book-genre")
+    label(for="book-genre") Genre: ('childrens', 'classics', 'fantasy', 'fiction', 'history', 'philosophy', 'programming', 'science fiction')
+    input(type="text", id="book-isbn")
+    label(for="book-isbn") ISBN#:
+    |<br><br>
+    button.btn.waves-effect.waves-light#add-book(type="text") Submit
+  .col.s4
+    h4 Add New User!
+
+    input(type="text", id="user-first-name")
+    label(for="user-first-name") First Name:
+    input(type="text", id="user-last-name")
+    label(for="user-last-name") LastName:
+    input(type="text", id="user-email")
+    label(for="user-email") Email:
+    input(type="password", id="user-password")
+    label(for="user-password") Password:
+    input(type="password", id="user-password-conf")
+    label(for="user-password-conf") Password confirm:
+    |<br><br>
+    button.btn.waves-effect.waves-light#add-user(type="text") Submit
 
 
-h1 Add New Order!
-form(name="add-order")
-  ul
-    li User ID:
-    input(name="order-user-id")
-    li Book ID:
-    input(name="order-books-id")
-  input(type="submit", value="Add Order")
+
+  .col.s4
+    h4 Add New Order!
+    label(for="order-user-id") User ID:
+    input(type="text", id="order-user-id")
+    label(for="order-books-id") Book ID:
+    input(type="text", id="order-books-id")
+    |<br><br>
+    button.btn.waves-effect.waves-light#add-order(type="text") Submit
