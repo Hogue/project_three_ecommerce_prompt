@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Order = require('../models/orders.js');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+var util = require('util');
 
 router.get('/', jsonParser);
 // GET orders listing
@@ -16,13 +19,13 @@ router.get('/', function(req, res) {
 
 // GET individual orders listing
 
-router.get('/orders/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   Order.find({
     _id: req.params.id
   }, function(error, order) {
     if (error) {
       console.log(error);
-      res.send('Error; cannot GET order by id')
+      res.send('Error; cannot GET order by id');
     } else {
       res.json(order);
       res.status(200);
@@ -39,7 +42,7 @@ router.get('user/:id/orders', function(req, res, next) {
   }, function(error, orders) {
     if (error) {
       console.log(error);
-      res.send('Error; cannot GET orders by user ID')
+      res.send('Error; cannot GET orders by user ID');
     } else {
       res.json(order);
       res.status(200);
@@ -48,15 +51,23 @@ router.get('user/:id/orders', function(req, res, next) {
 });
 
 //POST new order
-router.post('/orders', jsonParser);
-router.post('/orders', bodyParser());
-router.post('/orders', function(req, res, next) {
+router.post('/', jsonParser);
+router.post('/', bodyParser());
+router.post('/', function(req, res) {
   Order.create({
     user, books, date, purchased
     user: req.body.user,
     books: req.body.books,
     date: req.body.date,
     purchased: false
+  }, function(err, promise) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(400);
+    } else {
+      res.json(promise);
+      res.status(200);
+    }
   });
 });
 
@@ -64,9 +75,9 @@ router.post('/orders', function(req, res, next) {
 //Note: is PUT better? Check for errs
 // - esp. removing old Books from the order when adding new ones.
 
-router.patch('/orders', jsonParser);
-router.patch('/orders', bodyParser());
-apiRouter.patch('/orders/:id', function(req, res) {
+router.patch('/', jsonParser);
+router.patch('/', bodyParser());
+apiRouter.patch('/:id', function(req, res) {
   Contact.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, function(error, orders) {
@@ -80,7 +91,7 @@ apiRouter.patch('/orders/:id', function(req, res) {
 });
 
 //DELETE order
-router.delete('/orders/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   Order.remove({
     _id: req.params.id
   }, function(error) {
