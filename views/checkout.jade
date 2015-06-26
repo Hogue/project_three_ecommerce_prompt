@@ -1,14 +1,14 @@
 extend layout
 block content
   h1 Checkout Page
-  p #{userNameFull}
+  h4 #{userNameFull}
 
-  h2 In your cart:
+  h4 In your cart:
   div (Book(s) in cart go here)
   br
-  h2 Payment:
+  h4 Payment Information:
   form(action="" method="POST" id="payment-form")
-    span(class="payment-errors")
+    div(class="payment-errors")
     div(class="form-row")
     label
       span Card Number
@@ -27,4 +27,4 @@ block content
 
   script(src='https://js.stripe.com/v2/')
     //- This identifies your website in the createToken call below
-  script(Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy'))
+  script(src='javascripts/checkout.js')

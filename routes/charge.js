@@ -10,24 +10,20 @@ var Book = require('./books.js');
 var User = require('./users.js');
 var Order = require('../models/orders.js');
 
-
-
-
-stripe.charges.create({
-  amount: 400,
-  currency: "usd",
-  source: "tok_16HgmDHaEnmpuKy9iTXuSysN", // obtained with Stripe.js
-  description: "Charge for test@example.com"
-}, function(err, charge) {
-  // asynchronously called
-});
-
-
-
-
 router.post('/stripe', function(req, res, next) {
-  //Obtain Strip Token
+  //Obtain Stripe Token
   var stripeToken = req.body.stripeToken;
 
-  var userID = req.user._id;
+  var charge = stripe.charges.create({
+    amount: 1000, // amount is in cents
+    currency: "usd",
+    source: stripeToken,
+    description: "Example charge"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+    }
+  });
 })
+
+module.exports = router;
