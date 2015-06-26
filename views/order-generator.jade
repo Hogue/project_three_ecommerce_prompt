@@ -21,12 +21,12 @@ block content
                         th(data-field="order-user") User
                 tbody
                     for order in orders
-                        tr.order-item
+                        tr.order-item(data-id="#{order._id}")
                             td #{order._id}
                             td #{order.date}
                             if order.user !== undefined
                                 td #{order.user.email}
-                            td <a class="waves-effect waves-light btn delete">Delete</a>
+                            td <a class="waves-effect waves-light btn delete" data-obj-type="order">Delete</a>
 
 
 
