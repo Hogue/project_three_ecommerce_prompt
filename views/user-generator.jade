@@ -27,9 +27,11 @@ block content
                         th(data-field="deleter") Delete
                 tbody
                     for user in users
-                        tr.user-item
+                        tr.user-item(data-id="#{user._id}")
                             td #{user.email}
                             td #{user.nameFirst}
                             td #{user.nameLast}
+                            td <a class="waves-effect waves-light btn delete" data-obj-type="user">Delete</a>
+
 
 
