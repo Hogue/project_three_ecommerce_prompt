@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-//CLIENTSIDE INTERFACE
+//---------CLIENTSIDE INTERFACE---------
 
 //Note: Once authentication is implemented, add 'get Current User' to this function, so their User ID is stored in the browser for making payment
 //Also add their name to the page itself

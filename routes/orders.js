@@ -105,14 +105,14 @@ router.post('/', function(req, res) {
   });
 });
 
-//PATCH new individual book on an order
+//PATCH new individual book onto an order
 //Note: is PUT better? Check for errs
 // - esp. removing old Books from the order when adding new ones.
 
-router.patch('/orders', jsonParser);
-router.patch('/orders', bodyParser());
-apiRouter.patch('/orders/:id', function(req, res) {
-  Contact.findByIdAndUpdate(req.params.id, {
+router.patch('/', jsonParser);
+router.patch('/', bodyParser());
+router.patch('/:id', function(req, res) {
+  Order.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, function(error, orders) {
     if (error) {
