@@ -9,7 +9,7 @@ block content
             label(for="order-books-id") Book ID:
             input(type="text", id="order-books-id")
             |<br><br>
-            button.btn.waves-effect.waves-light(type="submit") Submit
+            button.btn.waves-effect.waves-light.swirly(type="submit") Submit
       .col.s8
         .orders
             table.striped
@@ -24,9 +24,6 @@ block content
                         tr.order-item
                             td #{order._id}
                             td #{order.date}
-                            ul
-                                for book in order.books
-                                    li #{book.title} - #{book.price}
                             if order.user !== undefined
                                 td #{order.user.email}
                             td <a class="waves-effect waves-light btn delete">Delete</a>
