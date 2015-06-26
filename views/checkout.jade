@@ -3,6 +3,10 @@ block content
   h1 Checkout Page
   p #{userNameFull}
 
+  h2 In your cart:
+  div (Book(s) in cart go here)
+  br
+  h2 Payment:
   form(action="" method="POST" id="payment-form")
     span(class="payment-errors")
     div(class="form-row")
