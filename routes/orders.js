@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var Order = require('../models/orders.js');
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
-var util = require('util');
+var express = require('express'),
+  router = express.Router(),
+  Order = require('../models/orders.js'),
+  bodyParser = require('body-parser'),
+  jsonParser = bodyParser.json(),
+  jade = require('jade'),
+  fs = require('fs'),
+  util = require('util');
 
 // GET orders listing
 router.get('/', jsonParser);
@@ -49,7 +51,29 @@ router.get('user/:id/orders', function(req, res, next) {
   });
 });
 
+// app.post('/articles', jsonParser);
+// app.post('/articles', function(req, res) {
+//   Article.create(req.body,
+// function(error, article) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       fs.readFile('./templates/article.jade', 'utf8', function(err, data) {
+//         if (err) {
+//           res.sendStatus(400);
+//         } else {
+//           var articleCompiler = jade.compile(data);
+//           var html = articleCompiler(article);
+//           res.send(html);
+//           res.status(200);
+//         }
+//       });
+//     }
+//   });
+// });
+
 //POST new order
+router.post('/', jsonParser);
 router.post('/', function(req, res) {
   Order.create({
     user: req.body.user,
@@ -61,8 +85,21 @@ router.post('/', function(req, res) {
       console.log(err);
       res.sendStatus(400);
     } else {
-      res.json(promise);
-      res.status(200);
+      fs.readFile('./views/order.jade', 'utf8', function(err, data) {
+        if (err) {
+          console.log(err);
+          res.sendStatus(400);
+        } else {
+          console.log('GOT THROUGH');
+          var userCompiler = jade.compile(data);
+          console.log('passed compiler');
+          console.log(promise);
+          var html = userCompiler(promise);
+          console.log('made html');
+          res.send(html);
+          res.status(200);
+        }
+      });
     }
   });
 });
