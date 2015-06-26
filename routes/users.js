@@ -68,14 +68,18 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/:id', function(req, res) {
-  User.remove({
+  User.findOneAndRemove({
     _id: req.params.id
-  }, function(err) {
+  }, function(err, ghost) {
     if (err) {
       console.log(err);
       res.sendStatus(400);
     } else {
-      res.send('User Deleted');
+      res.send({
+        _id: ghost._id,
+        type: 'user'
+      });
+      res.status(204);
     }
   });
 });

@@ -52,27 +52,6 @@ router.get('user/:id/orders', function(req, res, next) {
   });
 });
 
-// app.post('/articles', jsonParser);
-// app.post('/articles', function(req, res) {
-//   Article.create(req.body,
-// function(error, article) {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       fs.readFile('./templates/article.jade', 'utf8', function(err, data) {
-//         if (err) {
-//           res.sendStatus(400);
-//         } else {
-//           var articleCompiler = jade.compile(data);
-//           var html = articleCompiler(article);
-//           res.send(html);
-//           res.status(200);
-//         }
-//       });
-//     }
-//   });
-// });
-
 //POST new order
 router.post('/', jsonParser);
 router.post('/', function(req, res) {
@@ -92,12 +71,8 @@ router.post('/', function(req, res) {
           console.log(err);
           res.sendStatus(400);
         } else {
-          console.log('GOT THROUGH');
           var userCompiler = jade.compile(data);
-          console.log('passed compiler');
-          console.log(promise);
           var html = userCompiler(promise);
-          console.log('made html');
           res.send(html);
           res.status(200);
         }

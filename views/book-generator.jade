@@ -28,9 +28,11 @@ block content
                         th(data-field="deleter") Delete
                 tbody
                     for book in books
-                        tr.book-item
+                        tr.book-item(data-id="#{book._id}")
                             td #{book.title}
                             td #{book.author}
                             td #{book.price}
+                            td <a class="waves-effect waves-light btn delete" data-obj-type="book">Delete</a>
+
 
 
