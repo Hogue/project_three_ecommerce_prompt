@@ -1,0 +1,36 @@
+extend layout
+
+block content
+    .row
+      .col.s4
+        form#add-book
+            h4 Add New Book!
+            input(type="text", id="book-title")
+            label(for="book-title") Title
+            input(type="text", id="book-author")
+            label(for="book-author") Author
+            input(type="text", id="book-price")
+            label(for="book-price") Price
+            input(type="text", id="book-genre")
+            label(for="book-genre") Genre: (childrens, classics, fantasy, fiction, history, philosophy, programming, science fiction)
+            input(type="text", id="book-isbn")
+            label(for="book-isbn") ISBN#:
+            |<br><br>
+            button.btn.waves-effect.waves-light(type="submit") Submit
+      .col.s8
+        .books
+            table.striped
+                thead
+                    tr
+                        th(data-field="id") Book Title
+                        th(data-field="name") Author
+                        th(data-field="price") Book Price
+                        th(data-field="deleter") Delete
+                tbody
+                    for book in books
+                        tr.book-item
+                            td #{book.title}
+                            td #{book.author}
+                            td #{book.price}
+
+

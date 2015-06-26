@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.delete:hover {
+  background-color: #d32f2f;
+}
