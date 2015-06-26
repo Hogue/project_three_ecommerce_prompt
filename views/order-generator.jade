@@ -1,0 +1,35 @@
+extend layout
+
+block content
+    .row
+      .col.s4
+        form#add-order
+            label(for="order-order-id") order ID:
+            input(type="text", id="order-order-id")
+            label(for="order-books-id") Book ID:
+            input(type="text", id="order-books-id")
+            |<br><br>
+            button.btn.waves-effect.waves-light(type="submit") Submit
+      .col.s8
+        .orders
+            table.striped
+                thead
+                    tr
+                        th(data-field="order-id") Order ID
+                        th(data-field="order-date") Date
+                        th(data-field="order-books") Books
+                        th(data-field="order-user") User
+                tbody
+                    for order in orders
+                        tr.order-item
+                            td #{order._id}
+                            td #{order.date}
+                            ul
+                                for book in order.books
+                                    li #{book.title} - #{book.price}
+                            if order.user !== undefined
+                                td #{order.user.email}
+                            td <a class="waves-effect waves-light btn delete">Delete</a>
+
+
+
