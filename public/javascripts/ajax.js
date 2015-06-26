@@ -64,24 +64,26 @@ $(document).ready(function() {
     });
   });
 
-  var getType = function(itemString){
-    return itemString.split('-')[0];
-  };
-
   $('a.delete').on('click', function(event) {
     event.preventDefault();
-    var id = $(this).data('id');
-    delUrl = 'http://localhost:3000' + id;
-    var itemType = getType($(this).parent().class());
-    console.log(itemType);
-    debugger;
+
+    var type = $(this).data('obj-type');
+    var classSelector = '.' + type + '-item';
+    var oid = $(this).parents(classSelector).data('id');
+    var delUrl = 'http://localhost:3000/' + type + 's/' + oid;
+
+    function setVars(res) {
+      $('.' + type + '-item').find(classSelector).data('id').remove();
+    }
     $.ajax({
         url: delUrl,
         method: 'DELETE',
       })
-      .done(function() {
-        $(this).parent().remove();
+      .fail(function() {
+        console.log('FAILED TO DELETE');
+      })
+      .done(function(res){
+        $('.'+res.type+'s').find('.'+res.type+'-item[data-id="'+res._id+'"]').remove();
       });
   });
-
 });

@@ -127,14 +127,18 @@ apiRouter.patch('/:id', function(req, res) {
 
 //DELETE order
 router.delete('/:id', function(req, res) {
-  Order.remove({
+  Order.findOneAndRemove({
     _id: req.params.id
-  }, function(error) {
+  }, function(error, ghost) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      res.sendStatus(204);
+      res.send({
+        _id: ghost._id,
+        type: 'order'
+      });
+      res.status(204);
     }
   });
 });
