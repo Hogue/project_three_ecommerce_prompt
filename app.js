@@ -6,7 +6,13 @@ var mongoose = require('mongoose');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
+var flash = require('connect-flash');
+var passport = require('./auth/local-strategy.js');
+var uuid = require('node-uuid');
+// var cookieParser = require('cookie-parser');
+
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var jade = require('jade');
@@ -24,8 +30,14 @@ var admin = require('./routes/admin.js');
 var users = require('./routes/users.js');
 var books = require('./routes/books.js');
 var orders = require('./routes/orders.js');
+var auth = require('./routes/auth.js');
 
 mongoose.connect(config.mongo.dbUrl);
+
+var mongoStore = new MongoDBStore({
+    uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
+    collection: 'webSessions'
+});
 
 var app = express();
 
@@ -38,26 +50,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cookieParser());
+// app.use(cookieParser());
+app.use(session({
+   secret: 'precious_pig',
+   store: mongoStore,
+   resave: false,
+   saveUninitialized: true
+}))
+
+app.use(require('connect-flash')());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/orders', orders);
+app.use('/auth', auth);
 
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.
 // If the url matches anything in the directory, it will be served
 // Else: Next fires, and moves on to next handler
 app.use(express.static(path.join(__dirname, 'public')));
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // error handlers
 
@@ -76,11 +92,9 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  console.log(err.message);
+  console.error(err.stack);
+  res.sendStatus(500);
 });
 
 var server = app.listen(3000, function() {
