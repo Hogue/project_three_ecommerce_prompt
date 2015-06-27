@@ -26,6 +26,7 @@ var Order = require('./models/orders.js');
 var User = require('./models/users.js');
 
 var routes = require('./routes/index.js');
+var admin = require('./routes/admin.js');
 var users = require('./routes/users.js');
 var books = require('./routes/books.js');
 var orders = require('./routes/orders.js');
@@ -41,8 +42,8 @@ var mongoStore = new MongoDBStore({
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -62,6 +63,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
+app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/orders', orders);

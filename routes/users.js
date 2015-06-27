@@ -1,8 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
-var User = require('../models/users.js');
+var express = require('express'),
+  router = express.Router(),
+  bodyParser = require('body-parser'),
+  jsonParser = bodyParser.json(),
+  jade = require('jade'),
+  fs = require('fs'),
+  User = require('../models/users.js'),
+  util = require('util');
 
 router.get('/', jsonParser);
 router.get('/', function(req, res, next) {
@@ -18,10 +21,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', jsonParser);
-router.get('/:id', function(req, res){
+router.get('/:id', function(req, res) {
   User.find({
     _id: req.params.id
-  }, function(err, result){
+  }, function(err, result) {
     if (err) {
       console.log(err);
       res.sendStatus(400);
@@ -35,19 +38,31 @@ router.get('/:id', function(req, res){
 });
 
 /* Add user */
+router.post('/', jsonParser);
 router.post('/', function(req, res) {
   User.create({
     nameFirst: req.body.nameFirst,
     nameLast: req.body.nameLast,
     email: req.body.email,
     password: req.body.password
-  }, function(err, promise){
+  }, function(err, promise) {
     if (err) {
       console.log(err);
       res.sendStatus(400);
     } else {
-      res.json(promise);
-      res.status(200);
+      fs.readFile('./views/user.jade', 'utf8', function(err, data) {
+        if (err) {
+          console.log('Erroring Out');
+          console.log(err);
+          res.sendStatus(400);
+        } else {
+          var userCompiler = jade.compile(data);
+          var html = userCompiler(promise);
+          console.log(html);
+          res.send(html);
+          res.status(200);
+        }
+      });
     }
   });
 });
@@ -55,7 +70,7 @@ router.post('/', function(req, res) {
 router.delete('/:id', function(req, res) {
   User.remove({
     _id: req.params.id
-  }, function(err){
+  }, function(err) {
     if (err) {
       console.log(err);
       res.sendStatus(400);
@@ -65,7 +80,7 @@ router.delete('/:id', function(req, res) {
   });
 });
 
-router.patch('/:id', function(req, res){
+router.patch('/:id', function(req, res) {
   console.log(req);
   User.findByIdAndUpdate(req.params.id, {
     // email: req.body.email
@@ -73,7 +88,7 @@ router.patch('/:id', function(req, res){
     nameLast: req.body.nameLast,
     email: req.body.email,
     password: req.body.password
-  }, function(err, userFound){
+  }, function(err, userFound) {
     if (err) {
       console.log(err);
       res.sendStatus(400);
@@ -84,10 +99,5 @@ router.patch('/:id', function(req, res){
     }
   });
 });
-
-router.post('/', function(req, res) {
-  res.send('Attempting to Post');
-});
-
 
 module.exports = router;
