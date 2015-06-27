@@ -7,7 +7,7 @@ var authStrategy = new PassportLocalStrategy({
   passwordField: 'password'
 }, function(email, password, done) {
   User.authenticate(email, password, function(error, user){
-    done(error, user/*, error ? { message: error.message } : null*/);
+    done(error, user);
   });
 });
 
