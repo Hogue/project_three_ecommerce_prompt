@@ -1,11 +1,30 @@
 Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy');
 
-jQuery(function($) {
-  $('#payment-form').submit(function(event) {
-    var form = (this);
+function stripeResponseHandler(status, response) {
+  var form = $('#payment-form');
 
+  if (response.error) {
+    // Show the errors on the form
+    $('form').find('.payment-errors').text(response.error.message);
+    //$('form').find('button').prop('disabled', false);
+  } else {
+    // response contains id and card, which contains additional card details
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $('form').append($('<input type="hidden" name="stripeToken" />').val(token));
+    // and submit
+    //------------HERE IS WHERE YOU PUT THE GET REQUEST TO DO STUFF WITH 'PURCHASE SUCCESS'------------------
+    $('form').get(0).submit();
+  }
+};
+
+$(function($) {
+  $('#payment-form').submit(function(event) {
+    event.preventDefault();
+    var form = $(this);
+    debugger;
     // Disable the submit button to prevent repeated clicks
-    $form.find('button').prop('disabled', true);
+    //$('form').find('button').prop('disabled', true);
 
     Stripe.card.createToken(form, stripeResponseHandler);
 
@@ -13,23 +32,6 @@ jQuery(function($) {
     return false;
   });
 });
-
-function stripeResponseHandler(status, response) {
-  var form = $('#payment-form');
-
-  if (response.error) {
-    // Show the errors on the form
-    $form.find('.payment-errors').text(response.error.message);
-    $form.find('button').prop('disabled', false);
-  } else {
-    // response contains id and card, which contains additional card details
-    var token = response.id;
-    // Insert the token into the form so it gets submitted to the server
-    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-    // and submit
-    $form.get(0).submit();
-  }
-};
 
 
 //----------------CHAAAAANGE ACCORDING TO PAGE-------------

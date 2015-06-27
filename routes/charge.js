@@ -10,19 +10,27 @@ var Book = require('./books.js');
 var User = require('./users.js');
 var Order = require('../models/orders.js');
 
+router.get('/stripe', function(req, res, next) {
+  res.send("Scram!");
+});
+
 router.post('/stripe', function(req, res, next) {
   //Obtain Stripe Token
   var stripeToken = req.body.stripeToken;
-
+  debugger;
   var charge = stripe.charges.create({
-    amount: 1000, // amount is in cents
+    //amount is in cents
+    amount: 1000,
     currency: "usd",
     source: stripeToken,
     description: "Example charge"
+
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
+      console.log('Card declined');
       // The card has been declined
     }
+    console.log(err);
   });
 })
 
