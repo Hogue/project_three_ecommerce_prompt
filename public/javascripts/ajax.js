@@ -1,10 +1,17 @@
 $(document).ready(function() {
+  var currentForm;
+  var clearForm = function(domEl) {
+    $('input').each(function(element) {
+      $(this).val('');
+    });
+  };
 
   // ========================
   // ADD BOOK FORM
   // ========================
   $('#add-book').on('submit', function(event) {
     event.preventDefault();
+    currentForm = $(this);
     var book = {
       title: $('input#book-title').val(),
       author: $('input#book-author').val(),
@@ -20,12 +27,15 @@ $(document).ready(function() {
     }).done(function(res) {
       console.log(res);
       $('.books').append(res);
+      clearForm(currentForm);
     });
   });
   // ========================
   // ADD USER FORM
   // ========================
   $('#add-user').on('submit', function(event) {
+    currentForm = $(this);
+
     event.preventDefault();
     if ($('input #user-password').val() === $('input #user-password-conf').val()) {
       var user = {
@@ -42,6 +52,7 @@ $(document).ready(function() {
       }).done(function(res) {
         console.log('Response from router: ' + res);
         $('.users tbody').append(res);
+        clearForm(currentForm);
       });
     }
   });
@@ -49,6 +60,8 @@ $(document).ready(function() {
   // ADD ORDER FORM
   // ========================
   $('#add-order').on('submit', function(event) {
+    currentForm = $(this);
+
     event.preventDefault();
     var order = {
       date: Date.now(),
@@ -61,6 +74,7 @@ $(document).ready(function() {
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
       $('.striped tbody').append(res);
+      clearForm(currentForm);
     });
   });
 
@@ -72,9 +86,6 @@ $(document).ready(function() {
     var oid = $(this).parents(classSelector).data('id');
     var delUrl = 'http://localhost:3000/' + type + 's/' + oid;
 
-    function setVars(res) {
-      $('.' + type + '-item').find(classSelector).data('id').remove();
-    }
     $.ajax({
         url: delUrl,
         method: 'DELETE',
@@ -82,8 +93,9 @@ $(document).ready(function() {
       .fail(function() {
         console.log('FAILED TO DELETE');
       })
-      .done(function(res){
-        $('.'+res.type+'s').find('.'+res.type+'-item[data-id="'+res._id+'"]').remove();
+      .done(function(res) {
+        Materialize.toast('Item Deleted!', 2000);
+        $('.' + res.type + 's').find('.' + res.type + '-item[data-id="' + res._id + '"]').fadeOut(1000);
       });
   });
 });
