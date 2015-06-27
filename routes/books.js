@@ -3,6 +3,9 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var Book = require('../models/books.js');
+var fs = require('fs');
+var util = require('util');
+var jade = require('jade');
 
 router.get('/', function(req, res) {
   Book.find({},function(err, bookList) {
