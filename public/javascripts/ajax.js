@@ -64,7 +64,7 @@ $(document).ready(function() {
     });
   });
 
-  $('a.delete').on('click', function(event) {
+  $('tbody').on('click', 'a.delete', function(event) {
     event.preventDefault();
 
     var type = $(this).data('obj-type');
