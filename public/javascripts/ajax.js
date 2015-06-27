@@ -71,7 +71,7 @@ $(document).ready(function() {
       data: JSON.stringify(order),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
-      $('.striped tbody').append(res);
+      $('.striped tbody').append(res).hide();
       clearForm(currentForm);
     });
   });
