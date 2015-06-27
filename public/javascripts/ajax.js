@@ -25,8 +25,7 @@ $(document).ready(function() {
       data: JSON.stringify(book),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
-      console.log(res);
-      $('.books').append(res);
+      $('.books tbody').append(res);
       clearForm(currentForm);
     });
   });
@@ -50,7 +49,6 @@ $(document).ready(function() {
         data: JSON.stringify(user),
         contentType: "application/json; charset=utf-8"
       }).done(function(res) {
-        console.log('Response from router: ' + res);
         $('.users tbody').append(res);
         clearForm(currentForm);
       });
