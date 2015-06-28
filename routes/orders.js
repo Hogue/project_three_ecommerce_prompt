@@ -74,6 +74,7 @@ router.post('/', function(req, res) {
           var userCompiler = jade.compile(data);
           var html = userCompiler(promise);
           res.send(html);
+          console.log(html);
           res.status(200);
         }
       });

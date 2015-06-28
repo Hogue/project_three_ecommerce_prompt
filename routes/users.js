@@ -29,8 +29,6 @@ router.get('/:id', function(req, res) {
       console.log(err);
       res.sendStatus(400);
     } else {
-      // console.log('Result object: ' + result);
-      // console.log('Last name should be: ' + result['nameLast']);
       res.json(result);
       res.status(200);
     }
@@ -58,7 +56,6 @@ router.post('/', function(req, res) {
         } else {
           var userCompiler = jade.compile(data);
           var html = userCompiler(promise);
-          console.log(html);
           res.send(html);
           res.status(200);
         }
@@ -97,7 +94,6 @@ router.patch('/:id', function(req, res) {
       console.log(err);
       res.sendStatus(400);
     } else {
-      console.log(userFound);
       res.json(userFound);
       // res.json(result);
     }
