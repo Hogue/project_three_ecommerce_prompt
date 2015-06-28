@@ -17,6 +17,7 @@ async.series([
   function(done){
     User.create({
       email: 'drewkakes@gmail.com',
+      password: 'jello99',
       nameFirst: 'Andrew',
       nameLast: 'Ellis'
     }, done);
@@ -27,3 +28,5 @@ async.series([
     }
     mongoose.disconnect();
   });
+
+
