@@ -21,7 +21,10 @@ a {
 }
 
 .card .card-title {
+  font-size: 2em;
+  font-weight: 400;
   color: rgba(85,98,112,1);
+  padding-bottom: 0px !important;
 }
 
 .delete {

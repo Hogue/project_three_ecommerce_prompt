@@ -5,59 +5,73 @@ block content
   img#header-logo(src="/images/nozama_logo1.4.png", alt="")
   h2.header NOZAMA
   nav
-    .nav-wrapper
-      a.right.button-collapse(href="#", data-activates="mobile-menu")
+    .nav-wrapper.valign-wrapper
+      a.left.button-collapse(href="#", data-activates="mobile-menu")
         i.material-icons menu
+      a.right#cart.valign(href="#", data-activates="shopping-cart")
+        i.material-icons shopping_cart
       ul.right.hide-on-med-and-down
         li
           a(href="#") My Account
         li
           a(href="#") Home
+        li
+          a(href="#cart")
+
       ul.right.side-nav#mobile-menu
         li
           a.tooltipped(href="#" data-position="left" data-tooltip="Account info") My Account
         li
           a.tooltipped(href="#" data-position="left" data-tooltip="Go Home") Home
+      ul.side-nav#shopping-cart
+        li
+          a(href="#") Item 1
+        li
+          a Item 2
+
   .container
-    .row
-      .col.s12.m8.offset-m2
-        .card
-          .card-image
-            img(src='/images/nozama_logo1.4.png')
-            span.card-title Main Logo
-          .card-content
-            p I am a very simple card
-          .card-action
-            a(href="#") This is a link
-
-    .row
-      .col.s12.m8.offset-m2
-        .card
-          .card-image
-            img(src='/images/nozama_logo1.4.png')
-            span.card-title Main Logo
-          .card-content
-            p I am a very simple card
-          .card-action
-            a(href="#") This is a link
-    .row
-      .col.s12.m8.offset-m2
-        .card
-          .card-image
-            img(src='/images/nozama_logo1.4.png')
-            span.card-title Main Logo
-          .card-content
-            p I am a very simple card
-          .card-action
-            a(href="#") This is a link
-
-    .row
-      .col.s12.m8.offset-m2
-        .card
-          .card-image
-            img(src='/images/nozama_logo1.4.png')
-            span.card-title Main Logo
-          .card-content
-            p I am a very simple card
-          .card-action
-            a(href="#") This is a link
+    ul#genres
+      li
+      .row
+        .col.s12.m8.offset-m2
+          .card#fiction
+            .card-image
+              img(src='/images/nozama_logo1.4.png')
+              span.card-title Fiction
+            .card-content
+              p I am a very simple card
+            .card-action
+              a(href="#") This is a link
+      li
+      .row(display='none')
+        .col.s12.m8.offset-m2
+          .card#history
+            .card-image
+              img(src='/images/nozama_logo1.6.png')
+              span.card-title History
+            .card-content
+              p I am a very simple card
+            .card-action
+              a(href="#") This is a link
+      li
+      .row
+        .col.s12.m8.offset-m2
+          .card#philosophy
+            .card-image
+              img(src='/images/nozama_logo1.4.png')
+              span.card-title Philosophy
+            .card-content
+              p I am a very simple card
+            .card-action
+              a(href="#") This is a link
+      li
+      .row
+        .col.s12.m8.offset-m2
+          .card#comp-sci
+            .card-image
+              img(src='/images/nozama_logo1.6.png')
+              span.card-title Computer Science
+            .card-content
+              p I am a very simple card
+            .card-action
+              a(href="#") This is a link

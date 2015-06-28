@@ -1,13 +1,30 @@
 $(document).ready(function() {
+  var options = [{
+    selector: '#history',
+    offset: 400,
+    callback: 'Materialize.fadeInImage("#history")'
+  }, {
+    selector: '#philosophy',
+    offset: 400,
+    callback: 'Materialize.fadeInImage("#philosophy")'
+  }, {
+    selector: '#comp-sci',
+    offset: 400,
+    callback: 'Materialize.fadeInImage("#comp-sci")'
+  }];
+  Materialize.scrollFire(options);
 
   $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 240
-        edge: 'right', // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      }
-    );
+    menuWidth: 200, // Default is 240
+    edge: 'left', // Choose the horizontal origin
+    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+  });
 
-
+  $('#cart').sideNav({
+    menuWidth: 350,
+    edge: 'right',
+    closeOnClick: true
+  });
 
   var currentForm;
   var clearForm = function(domEl) {
