@@ -1,19 +1,29 @@
+var App = App || {};
+
 $(document).ready(function() {
+
+  // ==============================================
+  // SET UP SCROLL FIRE OPTIONS FOR GENRE CARD DIVS
+  // ==============================================
   var options = [{
     selector: '#history',
-    offset: 400,
+    offset: 200,
     callback: 'Materialize.fadeInImage("#history")'
   }, {
     selector: '#philosophy',
-    offset: 400,
+    offset: 200,
     callback: 'Materialize.fadeInImage("#philosophy")'
   }, {
     selector: '#comp-sci',
-    offset: 400,
+    offset: 200,
     callback: 'Materialize.fadeInImage("#comp-sci")'
   }];
+  // INITIALIZE SCROLLFIRE
   Materialize.scrollFire(options);
 
+  // ==============================
+  // SET UP SLIDE-OUT MENUS
+  // ==============================
   $('.button-collapse').sideNav({
     menuWidth: 200, // Default is 240
     edge: 'left', // Choose the horizontal origin
@@ -26,6 +36,9 @@ $(document).ready(function() {
     closeOnClick: true
   });
 
+  // ===========================
+  // SET UP WAY TO CLEAR FORM
+  // ===========================
   var currentForm;
   var clearForm = function(domEl) {
     $('input').each(function(element) {
@@ -60,9 +73,10 @@ $(document).ready(function() {
   // ADD USER FORM
   // ========================
   $('#add-user').on('submit', function(event) {
+    event.preventDefault();
     currentForm = $(this);
 
-    event.preventDefault();
+    // TODO: PASSWORD VALIDATION THAT DOESN'T SUCK
     if ($('input #user-password').val() === $('input #user-password-conf').val()) {
       var user = {
         nameFirst: $('input#user-first-name').val(),
@@ -85,9 +99,9 @@ $(document).ready(function() {
   // ADD ORDER FORM
   // ========================
   $('#add-order').on('submit', function(event) {
+    event.preventDefault();
     currentForm = $(this);
 
-    event.preventDefault();
     var order = {
       date: Date.now(),
       purchased: false
@@ -98,14 +112,27 @@ $(document).ready(function() {
       data: JSON.stringify(order),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
-      $('.striped tbody').append(res).hide();
+      $('.orders tbody').append(res);
       clearForm(currentForm);
     });
   });
 
+
+  // =======================
+  // UNIVERSAL DELETE BUTTON
+  // =======================
   $('tbody').on('click', 'a.delete', function(event) {
     event.preventDefault();
 
+    // DISABLING DOUBLE-CLICKING DELETE
+    var $this = $(this);
+    var alreadyClicked = $this.data('clicked');
+    if (alreadyClicked) {
+      return false;
+    }
+    $this.data('clicked', true);
+
+    // GATHERING INFORMATION FOR CREATING DELETE URL
     var type = $(this).data('obj-type');
     var classSelector = '.' + type + '-item';
     var oid = $(this).parents(classSelector).data('id');

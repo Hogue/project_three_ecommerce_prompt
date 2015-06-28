@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
   Order = require('./orders.js');
 var Hash = require('password-hash');
 
-
 var userSchema = new Schema({
   email: {
     type: String,

@@ -1,7 +1,5 @@
 tr.order-item(data-id="#{_id}")
     td #{_id}
     td #{date}
-    if user !== undefined
-        td #{user.email}
     td #{books}
     td <a class="waves-effect waves-light btn delete" data-obj-type="order">Delete</a>

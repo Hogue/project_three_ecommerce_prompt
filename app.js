@@ -31,6 +31,7 @@ var users = require('./routes/users.js');
 var books = require('./routes/books.js');
 var orders = require('./routes/orders.js');
 var auth = require('./routes/auth.js');
+var main = require('./routes/main.js');
 
 mongoose.connect(config.mongo.dbUrl);
 

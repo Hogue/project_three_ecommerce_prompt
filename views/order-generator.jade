@@ -24,8 +24,7 @@ block content
                         tr.order-item(data-id="#{order._id}")
                             td #{order._id}
                             td #{order.date}
-                            if order.user !== undefined
-                                td #{order.user.email}
+                            td #{order.books}
                             td <a class="waves-effect waves-light btn delete" data-obj-type="order">Delete</a>
 
 
