@@ -35,8 +35,8 @@ var auth = require('./routes/auth.js');
 mongoose.connect(config.mongo.dbUrl);
 
 var mongoStore = new MongoDBStore({
-  uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
-  collection: 'webSessions'
+    uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
+    collection: 'webSessions'
 });
 
 var app = express();
@@ -52,11 +52,11 @@ app.use(bodyParser.urlencoded({
 }));
 // app.use(cookieParser());
 app.use(session({
-  secret: 'precious_pig',
-  store: mongoStore,
-  resave: false,
-  saveUninitialized: true
-}))
+   secret: 'precious_pig',
+   store: mongoStore,
+   resave: false,
+   saveUninitialized: true
+}));
 
 app.use(require('connect-flash')());
 app.use(passport.initialize());
@@ -66,9 +66,9 @@ app.use('/', routes);
 app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
-app.use('/orders', orders); << << << < HEAD
-app.use('/main', main); === === =
-app.use('/auth', auth); >>> >>> > development
+app.use('/orders', orders);
+app.use('/main', main);
+app.use('/auth', auth);
 
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.
