@@ -1,6 +1,13 @@
 extends layout
 
 block content
+  a(href="/admin/add-book")
+    h1 Add a Book
+  a(href="/admin/add-user")
+    h1 Add a User
+  a(href="/admin/add-order")
+    h1 Add an Order
+
   .container
   .row
     .col.s12.m6.l3
@@ -30,7 +37,3 @@ block content
           p
         .card-action
           a(href="/admin/add-order") Click Here
-
-
-
-

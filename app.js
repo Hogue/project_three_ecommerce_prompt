@@ -30,6 +30,7 @@ var admin = require('./routes/admin.js');
 var users = require('./routes/users.js');
 var books = require('./routes/books.js');
 var orders = require('./routes/orders.js');
+var charge = require('./routes/charge.js');
 var auth = require('./routes/auth.js');
 var main = require('./routes/main.js');
 var genre = require('./routes/genre.js');
@@ -37,8 +38,8 @@ var genre = require('./routes/genre.js');
 mongoose.connect(config.mongo.dbUrl);
 
 var mongoStore = new MongoDBStore({
-    uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
-    collection: 'webSessions'
+  uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
+  collection: 'webSessions'
 });
 
 var app = express();
@@ -54,10 +55,10 @@ app.use(bodyParser.urlencoded({
 }));
 // app.use(cookieParser());
 app.use(session({
-   secret: 'precious_pig',
-   store: mongoStore,
-   resave: false,
-   saveUninitialized: true
+  secret: 'precious_pig',
+  store: mongoStore,
+  resave: false,
+  saveUninitialized: true
 }));
 
 app.use(require('connect-flash')());
@@ -69,6 +70,7 @@ app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/orders', orders);
+app.use('/stripe', charge);
 app.use('/main', main);
 app.use('/auth', auth);
 app.use('/genre', genre);
@@ -100,6 +102,17 @@ app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.sendStatus(500);
 });
+
+var server = app.listen(3000, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  // %s is a place holder that we replace with 'host' and 'port'
+  // it says where %s is, put the first argument, then replace the second %s with the second argument (host, port — are the two arguments)
+  console.log("Example app listening at http://%s:%s", host, port);
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 var server = app.listen(3000, function() {
   var host = server.address().address;

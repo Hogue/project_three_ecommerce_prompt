@@ -7,8 +7,8 @@ var express = require('express'),
   fs = require('fs'),
   util = require('util');
 
-// GET orders listing
 router.get('/', jsonParser);
+// GET orders listing
 router.get('/', function(req, res) {
   Order.find({}, function(err, orderList) {
     if (err) {
@@ -18,6 +18,7 @@ router.get('/', function(req, res) {
     res.status(200);
   });
 });
+
 // GET individual orders listing
 
 router.get('/:id', function(req, res, next) {
@@ -87,7 +88,7 @@ router.post('/', function(req, res) {
 router.patch('/', jsonParser);
 router.patch('/', bodyParser());
 router.patch('/:id', function(req, res) {
-  Contact.findByIdAndUpdate(req.params.id, {
+  Order.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, function(error, orders) {
     if (error) {
