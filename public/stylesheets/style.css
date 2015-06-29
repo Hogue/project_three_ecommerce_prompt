@@ -77,3 +77,18 @@ nav {
     padding-top:15px;
   }
 }
+
+.delete {
+  background-color: rgba(196,77,88, 1);
+}
+.delete:hover {
+background-color: rgba(196,77,88, .75);
+}
+
+button.swirly {
+  background-color: rgba(78, 205, 196, 1);
+}
+
+button.swirly:hover {
+  background-color: rgba(78, 205, 196, .75);
+}

@@ -139,9 +139,9 @@ $(document).ready(function() {
     var delUrl = 'http://localhost:3000/' + type + 's/' + oid;
 
     $.ajax({
-        url: delUrl,
-        method: 'DELETE',
-      })
+      url: delUrl,
+      method: 'DELETE',
+    })
       .fail(function() {
         console.log('FAILED TO DELETE');
       })

@@ -56,7 +56,6 @@ router.get('user/:id/orders', function(req, res, next) {
 router.post('/', jsonParser);
 router.post('/', function(req, res) {
   Order.create({
-    user, books, date, purchased
     user: req.body.user,
     books: req.body.books,
     date: req.body.date,
@@ -88,8 +87,8 @@ router.post('/', function(req, res) {
 
 router.patch('/', jsonParser);
 router.patch('/', bodyParser());
-apiRouter.patch('/:id', function(req, res) {
-  Contact.findByIdAndUpdate(req.params.id, {
+router.patch('/:id', function(req, res) {
+  Order.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, function(error, orders) {
     if (error) {

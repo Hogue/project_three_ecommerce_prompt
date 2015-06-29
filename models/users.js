@@ -6,6 +6,51 @@ var mongoose = require('mongoose'),
   Order = require('./orders.js');
 var Hash = require('password-hash');
 
+//===ADDRESS SUB-SCHEMAs======
+var emailAddressSchema = new mongoose.Schema({
+  emailAddress: {
+    type: String,
+    required: true,
+    match: /\S+@\S+\.\S+/
+  }
+});
+
+var enumeratedStates = ['AL AK AS AZ AR CA CO CT DE DC FM FL',
+  'GA GU HI ID IL IN IA KS KY LA ME MH MD MA MI MN MS MO MT',
+  'NE NV NH NJ NM NY NC ND MP OH OK OR PW PA PR RI SC SD TN TX',
+  'UT VT VI VA WA WV WI WY'
+].join(' ').split(' ');
+
+//========= ADDRESS SCHEMA ==========
+var addressSchema = new mongoose.Schema({
+  street: {
+    type: String,
+    required: true
+  },
+  secondStreet: String,
+  city: {
+    type: String,
+    required: true
+  },
+  state: {
+    type: String,
+    required: true,
+    enum: {
+      values: enumeratedStates
+    }
+  },
+  zipCode: {
+    type: String,
+    required: true
+    //match: /^\d{5}(-\d{4})?$/
+  },
+  country: {
+    type: String,
+    default: "USA"
+  },
+});
+
+//==========USER SCHEMA=================
 var userSchema = new Schema({
   email: {
     type: String,
@@ -29,11 +74,14 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  Orders: [Order.schema]
+  Address: [addressSchema],
+  Orders: [Order]
 });
 
 userSchema.statics.authenticate = function(email, password, callback) {
-  this.findOne({ email: email }, function(error, user) {
+  this.findOne({
+    email: email
+  }, function(error, user) {
     if (user && Hash.verify(password, user.password)) {
       callback(null, user);
     } else if (user || !error) {
@@ -49,8 +97,8 @@ userSchema.statics.authenticate = function(email, password, callback) {
 
 userSchema.virtual('library').get(function() {
   var library = [];
-  this.Orders.forEach(function(order){
-    order.books.forEach(function(book){
+  this.Orders.forEach(function(order) {
+    order.books.forEach(function(book) {
       library.push(book);
     });
   });
@@ -62,7 +110,7 @@ userSchema.virtual('nameFull').get(function() {
 
 userSchema.virtual('orderHistory').get(function() {
   ordersList = [];
-  Orders.forEach(function(order){
+  Orders.forEach(function(order) {
     if (order.date < Date.now()) {
       ordersList.push(order);
     }
