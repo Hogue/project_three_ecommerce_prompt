@@ -2,6 +2,9 @@ var config = require('../config');
 var async = require('async');
 var mongoose = require('mongoose');
 
+
+var Schema = mongoose.Schema;
+
 mongoose.connect(config.mongo.dbUrl);
 var Book = require('../models/books.js');
 var User = require('../models/users.js');
@@ -34,16 +37,55 @@ var addBook = function(done) {
 
 var addUser = function(done) {
   User.create({
-    email: 'drewkakes@gmail.com',
+    email: 'drewasdfasdfkakes@gmail.com',
     nameFirst: 'Andrew',
     nameLast: 'Ellis',
-    password: 'abc123'
+    password: 'abc123',
+    orders: [{
+      user: {
+        email: 'drewkakes@gmail.com',
+        nameFirst: 'Andrew',
+        nameLast: 'Ellis',
+        password: 'abc123'
+      },
+      books: [{
+        title: 'Eloquent JavaScript: A Modern Introduction to Programming',
+        author: 'Marvin Haverbeke',
+        price: 28.93,
+        genre: 'programming',
+        isbn: '978-1593275846',
+        thumbnail: [{
+          url: 'http://postimg.org/image/sd1pp6g61/'
+        }]
+      }],
+      date: Date.now(),
+      sent: false
+    }, {
+      user: {
+        email: 'drewkakes@gmail.com',
+        nameFirst: 'Andrew',
+        nameLast: 'Ellis',
+        password: 'abc123'
+      },
+      books: [{
+        title: 'Eloquent JavaScript: A Modern Introduction to Programming',
+        author: 'Marvin Haverbeke',
+        price: 28.93,
+        genre: 'programming',
+        isbn: '978-1593275846',
+        thumbnail: [{
+          url: 'http://postimg.org/image/sd1pp6g61/'
+        }]
+      }],
+      date: Date.now(),
+      sent: false
+    }]
   }, done);
 };
 
 var addOrder = function(done) {
   Order.create({
-    user: [],
+    user: User,
     books: [],
     date: Date.now(),
     sent: true

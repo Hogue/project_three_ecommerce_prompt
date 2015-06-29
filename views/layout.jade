@@ -12,14 +12,18 @@ html
           i.material-icons menu
         a#cart.right(href="#", data-activates="shopping-cart")
           i.material-icons shopping_cart
+        .left#welcome
+        if(user)
+          a Welcome, #{user.nameFirst}!
         ul.side-nav#mobile-menu
-          li
-            a.tooltipped(href="#" data-position="right" data-tooltip="Account info") My Account
-          li
-            a.tooltipped(href="#" data-position="right" data-tooltip="Go Home") Home
+            if(user)
+              include logged-in-menu
+            else
+              include logged-out-menu
         ul.side-nav#shopping-cart
           li
-            a(href="/checkout") Checkout
+            a(href="/checkout")
+                b Checkout
           li
             a Item 1
           li

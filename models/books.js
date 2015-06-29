@@ -11,6 +11,7 @@
   //require
 var mongoose = require('mongoose');
 require('./images.js');
+var Schema = mongoose.Schema;
 
 var enumeratedGenreTypes = ['childrens', 'classics', 'fantasy', 'fiction', 'history', 'philosophy', 'programming', 'science fiction'];
 

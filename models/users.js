@@ -29,7 +29,7 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  Orders: [Order]
+  Orders: [{type: Schema.Types.ObjectId, ref: Order}]
 });
 
 userSchema.statics.authenticate = function(email, password, callback) {

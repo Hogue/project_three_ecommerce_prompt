@@ -5377,11 +5377,6 @@ nav {
   src: url("../font/roboto/Roboto-Medium.woff2") format("woff2"), url("../font/roboto/Roboto-Medium.woff") format("woff"), url("../font/roboto/Roboto-Medium.ttf") format("truetype");
   font-weight: 500; }
 
-@font-face {
-  font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Bold.woff2") format("woff2"), url("../font/roboto/Roboto-Bold.woff") format("woff"), url("../font/roboto/Roboto-Bold.ttf") format("truetype");
-  font-weight: 700; }
-
 a {
   text-decoration: none; }
 
