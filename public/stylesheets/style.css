@@ -25,6 +25,11 @@ a {
   padding-bottom: 0px !important;
 }
 
+.book-item {
+  background-color: !important;
+  color: white;
+}
+
 .delete {
   background-color: rgba(196, 77, 88, 1);
 }

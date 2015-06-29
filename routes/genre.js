@@ -15,48 +15,25 @@ router.get('/', function(req, res) {
       res.sendStatus(404);
     }
     res.render('genre', {
-      bookList: bookList
+      bookList: bookList,
+      user: req.user
     });
     res.status(200);
   });
 });
 
 
-router.get('/fantasy', function(req, res) {
+router.get('/:genre', function(req, res) {
+  console.log(req.params);
   Book.find({
-    'genre': 'fantasy'
+    'genre': req.params.genre
   }, function(err, bookList) {
     if (err) {
       res.sendStatus(404);
     }
     res.render('genre', {
-      bookList: bookList
-    });
-  });
-});
-
-
-router.get('/add-user', function(req, res) {
-  User.find({}, function(err, userList) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(400);
-    }
-    res.render('user-generator', {
-      users: userList
-    });
-  });
-});
-
-
-router.get('/add-order', function(req, res) {
-  Order.find({}, function(err, orderList) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(400);
-    }
-    res.render('order-generator', {
-      orders: orderList
+      bookList: bookList,
+      user: req.user
     });
   });
 });

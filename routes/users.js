@@ -35,6 +35,22 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/:id/orders', jsonParser);
+router.get('/:id/orders', function(req, res) {
+  User.find({
+    _id: req.params.id
+  }, function(err, ordersFound) {
+    if (err) {
+      console.log(err.name);
+      res.send(err.name);
+    } else {
+      console.log(ordersFound);
+      res.json(ordersFound.orders);
+      res.status(200);
+    }
+  });
+});
+
 /* Add user */
 router.post('/', jsonParser);
 router.post('/', function(req, res) {
