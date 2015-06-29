@@ -8,7 +8,7 @@ var jsonParser = bodyParser.json();
 
 var Book = require('./books.js');
 var User = require('./users.js');
-var Order = require('../models/orders.js');
+var Order = require('./orders.js');
 
 router.get('/', function(req, res, next) {
   console.log('got to stripe');
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
     amount: 1000,
     currency: "usd",
     source: stripeToken,
-    description: "Example charge"
+    description: "Example charge",
 
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
