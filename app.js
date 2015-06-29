@@ -101,15 +101,6 @@ app.use(function(err, req, res, next) {
   res.sendStatus(500);
 });
 
-var server = app.listen(3000, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-
-  // %s is a place holder that we replace with 'host' and 'port'
-  // it says where %s is, put the first argument, then replace the second %s with the second argument (host, port — are the two arguments)
-  console.log("Example app listening at http://%s:%s", host, port);
-});
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 var server = app.listen(3000, function() {
