@@ -3,4 +3,11 @@ extends layout
 block content
   main
     .container
+      .row
+        for book in bookList
+          .col.s6.offset-s3.m4.l3
+            .card.small
+              span.left.card-title #{book.title} - #{book.author}
+
+
 

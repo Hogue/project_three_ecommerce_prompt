@@ -9,18 +9,28 @@ var express = require('express'),
   User = require('../models/users.js');
 
 
-router.get('/', function(req, res, next) {
-  res.render('genre');
-});
-
-
-router.get('/add-book', function(req, res, next) {
+router.get('/', function(req, res) {
   Book.find({}, function(err, bookList) {
     if (err) {
       res.sendStatus(404);
     }
-    res.render('book-generator', {
-      books: bookList
+    res.render('genre', {
+      bookList: bookList
+    });
+    res.status(200);
+  });
+});
+
+
+router.get('/fantasy', function(req, res) {
+  Book.find({
+    'genre': 'fantasy'
+  }, function(err, bookList) {
+    if (err) {
+      res.sendStatus(404);
+    }
+    res.render('genre', {
+      bookList: bookList
     });
   });
 });
