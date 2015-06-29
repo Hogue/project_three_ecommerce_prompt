@@ -1,32 +1,54 @@
-extend layout
+extends layout
 block content
-  h1 Checkout Page
-  h4 #{userNameFull}
+  extends main
+  block content
+    h1 Checkout Page
+    h4 #{userNameFull}
 
-  h4 In your cart:
-  div Book(s) in cart go here
-  br
-  span(id="validated")
-  h4 Payment Information:
-  form(action="/stripe" method="POST" id="payment-form")
-    div(class="payment-errors")
-    div(class="form-row")
-      label
-        span Card Number
-        input(type="text", size="20" data-stripe="number")
-    div(class="form-row")
-      label
-        span CCV
-        input(type="text", size="4" data-stripe="cvc")
-    div(class="form-row")
-      label
-        span Expiration (MM/YYYY)
-        input(type="text", size="2" data-stripe="exp-month")
-        span /
-        input(type="text", size="4" data-stripe="exp-year")
-    button(type="submit") Submit Payment
+    h4 In your cart:
+    div Book(s) in cart go here
+    br
+    h4 Mailing Address:
+    //- CHANGE THIS:
+    form(action="/stripe" method="POST" id="payment-form")
+      div(class="form-row")
+        label
+          span Card Number
+          input(type="text", size="20" data-stripe="number")
+      div(class="form-row")
+        label
+          span CCV
+          input(type="text", size="4" data-stripe="cvc")
+      div(class="form-row")
+        label
+          span Expiration (MM/YYYY)
+          input(type="text", size="2" data-stripe="exp-month")
+          span /
+          input(type="text", size="4" data-stripe="exp-year")
+      button(type="submit") Submit Payment
 
-  script(src='https://js.stripe.com/v2/')
-    //- This identifies your website in the createToken call below
-  script(src='javascripts/checkout.js')
-  script(Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy'))
+    br
+    span(id="validated")
+    h4 Payment Information:
+    form(action="/stripe" method="POST" id="payment-form")
+      div(class="payment-errors")
+      div(class="form-row")
+        label
+          span Card Number
+          input(type="text", size="20" data-stripe="number")
+      div(class="form-row")
+        label
+          span CCV
+          input(type="text", size="4" data-stripe="cvc")
+      div(class="form-row")
+        label
+          span Expiration (MM/YYYY)
+          input(type="text", size="2" data-stripe="exp-month")
+          span /
+          input(type="text", size="4" data-stripe="exp-year")
+      button(type="submit") Submit Payment
+
+    script(src='https://js.stripe.com/v2/')
+      //- This identifies your website in the createToken call below
+    script(src='javascripts/checkout.js')
+    script(Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy'))

@@ -68,10 +68,10 @@ app.use('/', routes);
 app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
-app.use('/orders', orders); << << << < HEAD
-app.use('/stripe', charge); === === =
-  app.use('/main', main);
-app.use('/auth', auth); >>> >>> > development
+app.use('/orders', orders);
+app.use('/stripe', charge);
+app.use('/main', main);
+app.use('/auth', auth);
 
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.

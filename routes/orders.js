@@ -70,20 +70,10 @@ router.post('/', function(req, res) {
           console.log(err);
           res.sendStatus(400);
         } else {
-<<<<<<< HEAD
-          console.log('GOT THROUGH');
-          var userCompiler = jade.compile(data);
-          console.log('passed compiler');
-          console.log(promise);
-          var html = userCompiler(promise);
-          console.log('made html');
-          res.send(html);
-=======
           var userCompiler = jade.compile(data);
           var html = userCompiler(promise);
           res.send(html);
           console.log(html);
->>>>>>> development
           res.status(200);
         }
       });
