@@ -1,6 +1,16 @@
 extends layout
 
 block content
+  hr
+    if (user)
+    p You are logged in as #{user.username}
+      a(href="/auth/logout")  logout
+  else
+    p
+      a(href="/auth/login") Please login
+      |  or
+      a(href="/auth/register")  register
+  hr
   .container
   .row
     .col.s12.m6.l3
