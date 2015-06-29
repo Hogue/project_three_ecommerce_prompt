@@ -46,7 +46,7 @@ app.use('/admin', admin);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/orders', orders);
-app.use('/charge', charge);
+app.use('/stripe', charge);
 
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.

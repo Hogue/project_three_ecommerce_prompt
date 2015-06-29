@@ -1,3 +1,5 @@
+//copied from node-stripe-charge
+
 // jquery for payment
 
 $(function() {

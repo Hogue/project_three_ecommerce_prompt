@@ -4,10 +4,11 @@ block content
   h4 #{userNameFull}
 
   h4 In your cart:
-  div (Book(s) in cart go here)
+  div Book(s) in cart go here
   br
+  span(id="validated")
   h4 Payment Information:
-  form(action="" method="POST" id="payment-form")
+  form(action="/stripe" method="POST" id="payment-form")
     div(class="payment-errors")
     div(class="form-row")
       label

@@ -10,14 +10,15 @@ var Book = require('./books.js');
 var User = require('./users.js');
 var Order = require('../models/orders.js');
 
-router.get('/stripe', function(req, res, next) {
+router.get('/', function(req, res, next) {
+  console.log('got to stripe');
   res.send("Scram!");
 });
 
-router.post('/stripe', function(req, res, next) {
+router.post('/', function(req, res, next) {
+  console.log('got to post stripe');
   //Obtain Stripe Token
   var stripeToken = req.body.stripeToken;
-  debugger;
   var charge = stripe.charges.create({
     //amount is in cents
     amount: 1000,

@@ -13,14 +13,22 @@ function stripeResponseHandler(status, response) {
     // Insert the token into the form so it gets submitted to the server
     $('form').append($('<input type="hidden" name="stripeToken" />').val(token));
     // and submit
-    //------------HERE IS WHERE YOU PUT THE GET REQUEST TO DO STUFF WITH 'PURCHASE SUCCESS'------------------
     $('form').get(0).submit();
-  }
+
+    //     $('form').get(0).submit(function() {
+    //   if ($('input:first').val() === 'correct') {
+    //     $('.validated').text('Validated...').show();
+    //     return;
+    //   } else {
+    //     $('.validated').text("Not valid!").show().fadeOut(1000);
+    //     event.preventDefault();
+    //   }
+  };
 };
 
 $(function($) {
   $('#payment-form').submit(function(event) {
-    event.preventDefault();
+    //event.preventDefault();
     var form = $(this);
     debugger;
     // Disable the submit button to prevent repeated clicks
@@ -32,6 +40,7 @@ $(function($) {
     return false;
   });
 });
+
 
 
 //----------------CHAAAAANGE ACCORDING TO PAGE-------------
