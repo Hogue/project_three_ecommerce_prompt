@@ -11,7 +11,7 @@ router.get('/', jsonParser);
 router.get('/', function(req, res, next) {
   User.find({}, function(err, usersList) {
     if (err) {
-      console.log(err);
+      console.log(err.name);
       res.send('Error retrieving Contacts');
     } else {
       res.json(usersList);
@@ -26,8 +26,8 @@ router.get('/:id', function(req, res) {
     _id: req.params.id
   }, function(err, result) {
     if (err) {
-      console.log(err);
-      res.sendStatus(400);
+      console.log(err.name);
+      res.send(err.name);
     } else {
       res.json(result);
       res.status(200);
@@ -45,14 +45,13 @@ router.post('/', function(req, res) {
     password: req.body.password
   }, function(err, promise) {
     if (err) {
-      console.log(err);
-      res.sendStatus(400);
+      console.log(err.name);
+      res.send(err.name);
     } else {
       fs.readFile('./views/user.jade', 'utf8', function(err, data) {
         if (err) {
           console.log('Erroring Out');
-          console.log(err);
-          res.sendStatus(400);
+          res.send(err.name);
         } else {
           var userCompiler = jade.compile(data);
           var html = userCompiler(promise);
@@ -69,7 +68,7 @@ router.delete('/:id', function(req, res) {
     _id: req.params.id
   }, function(err, ghost) {
     if (err) {
-      console.log(err);
+      console.log(err.name);
       res.sendStatus(400);
     } else {
       res.send({
@@ -91,11 +90,11 @@ router.patch('/:id', function(req, res) {
     password: req.body.password
   }, function(err, userFound) {
     if (err) {
-      console.log(err);
+      console.log(err.name);
+      res.send(err.name);
       res.sendStatus(400);
     } else {
       res.json(userFound);
-      // res.json(result);
     }
   });
 });
