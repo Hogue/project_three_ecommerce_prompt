@@ -24,7 +24,7 @@ $(document).ready(function() {
   // ==============================
   // SET UP SLIDE-OUT MENUS
   // ==============================
-  $('.button-collapse').sideNav({
+  $('#menu-left').sideNav({
     menuWidth: 200, // Default is 240
     edge: 'left', // Choose the horizontal origin
     closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
