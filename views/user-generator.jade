@@ -4,16 +4,20 @@ block content
     .row
       .col.s4
         form#add-user
-            input(type="text", id="user-first-name")
-            label(for="user-first-name") First Name:
-            input(type="text", id="user-last-name")
-            label(for="user-last-name") LastName:
-            input(type="text", id="user-email")
-            label(for="user-email") Email:
-            input(type="password", id="user-password")
-            label(for="user-password") Password:
-            input(type="password", id="user-password-conf")
-            label(for="user-password-conf") Password confirm:
+            .row
+                .input-field.col.s12
+                    input(type="text", id="user-first-name" placeholder='Bilbo')
+                    label(for="user-first-name") First Name:
+                .input-field.col.s12
+                    input(type="text", id="user-last-name" placeholder='Baggins')
+                    label(for="user-last-name") LastName:
+            .row
+                .input-field.col.s12
+                    input.validate(type="text", id="user-email" placeholder='BBaggins111@shire.co.nz')
+                    label(for="user-email") Email:
+                .input-field.col.s12
+                    input(type="password", id="user-password" placeholder='Password')
+                    label(for="user-password") Password:
             |<br><br>
             button.btn.waves-effect.waves-light(type="submit") Submit
       .col.s8
@@ -35,5 +39,6 @@ block content
                             td #{user.password}
                             td <a class="waves-effect waves-light btn delete" data-obj-type="user">Delete</a>
 
+    include layout_scripts
 
 

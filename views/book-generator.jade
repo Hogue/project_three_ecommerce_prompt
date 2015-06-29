@@ -4,17 +4,21 @@ block content
     .row
       .col.s4
         form#add-book
-            h4 Add New Book!
-            input(type="text", id="book-title")
-            label(for="book-title") Title
-            input(type="text", id="book-author")
-            label(for="book-author") Author
-            input(type="text", id="book-price")
-            label(for="book-price") Price
-            input(type="text", id="book-genre")
-            label(for="book-genre") Genre: (childrens, classics, fantasy, fiction, history, philosophy, programming, science fiction)
-            input(type="text", id="book-isbn")
-            label(for="book-isbn") ISBN#:
+            .input-field
+                input(type="text", id="book-title" placeholder="Gone with the Wind")
+                label(for="book-title") Title
+            .input-field
+                input(type="text", id="book-author" placeholder="John Steinbeck")
+                label(for="book-author") Author
+            .input-field
+                input(type="text", id="book-price" placeholder="12.99")
+                label(for="book-price") Price
+            .input-field
+                input(type="text", id="book-genre" placeholder="Fantasy")
+                label(for="book-genre") Genre: (childrens, classics, fantasy, fiction, history, philosophy, programming, science fiction)
+            .input-field
+                input(type="text", id="book-isbn" placeholder="102938474949")
+                label(for="book-isbn") ISBN#:
             |<br><br>
             button.btn.waves-effect.waves-light(type="submit") Submit
       .col.s8
@@ -33,3 +37,5 @@ block content
                             td #{book.author}
                             td #{book.price}
                             td <a class="waves-effect waves-light btn delete" data-obj-type="book">Delete</a>
+
+    include layout_scripts

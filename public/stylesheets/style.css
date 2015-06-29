@@ -25,6 +25,11 @@ a {
   padding-bottom: 0px !important;
 }
 
+.book-item {
+  background-color: !important;
+  color: white;
+}
+
 .delete {
   background-color: rgba(196, 77, 88, 1);
 }
@@ -48,7 +53,6 @@ h2 {
 
 .header {
   width: 100%;
-  border-bottom: 1px solid black;
   margin-bottom: 0;
 }
 

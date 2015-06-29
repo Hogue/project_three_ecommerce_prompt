@@ -33,6 +33,8 @@ var orders = require('./routes/orders.js');
 var charge = require('./routes/charge.js');
 var auth = require('./routes/auth.js');
 var main = require('./routes/main.js');
+var genre = require('./routes/genre.js');
+var checkout = require('./routes/checkout.js')
 
 mongoose.connect(config.mongo.dbUrl);
 
@@ -72,6 +74,8 @@ app.use('/orders', orders);
 app.use('/stripe', charge);
 app.use('/main', main);
 app.use('/auth', auth);
+app.use('/genre', genre);
+app.use('/checkout', checkout);
 
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.

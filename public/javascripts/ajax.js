@@ -24,7 +24,7 @@ $(document).ready(function() {
   // ==============================
   // SET UP SLIDE-OUT MENUS
   // ==============================
-  $('.button-collapse').sideNav({
+  $('#menu-left').sideNav({
     menuWidth: 200, // Default is 240
     edge: 'left', // Choose the horizontal origin
     closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
@@ -77,23 +77,29 @@ $(document).ready(function() {
     currentForm = $(this);
 
     // TODO: PASSWORD VALIDATION THAT DOESN'T SUCK
-    if ($('input #user-password').val() === $('input #user-password-conf').val()) {
-      var user = {
-        nameFirst: $('input#user-first-name').val(),
-        nameLast: $('input#user-last-name').val(),
-        email: $('input#user-email').val(),
-        password: $('input#user-password').val()
-      };
-      $.ajax({
+    var user = {
+      nameFirst: $('input#user-first-name').val(),
+      nameLast: $('input#user-last-name').val(),
+      email: $('input#user-email').val(),
+      password: $('input#user-password').val()
+    };
+    $.ajax({
         method: 'POST',
         url: 'http://localhost:3000/users',
         data: JSON.stringify(user),
         contentType: "application/json; charset=utf-8"
       }).done(function(res) {
-        $('.users tbody').append(res);
-        clearForm(currentForm);
+        if (res === 'ValidationError') {
+          console.log('ERROR WITH VALIDATION');
+          Materialize.toast('Please fill in all the required fields!', 2000);
+        } else {
+          $('.users tbody').append(res);
+          clearForm(currentForm);
+        }
+      })
+      .fail(function(res) {
+        console.error(res);
       });
-    }
   });
   // ========================
   // ADD ORDER FORM
