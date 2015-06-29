@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+    .container
+        .row
+            .col.s6.offset-s3
+                .center-align
+                    h1 Please login
+        .row
+            .col.s6.offset-s3
+                form(role="form", action="/auth/login", method="post")
+                    .form-group
+                        label(for="email") Email
+                        input#email.form-control(name="email", type="text")
+                    .form-group
+                        label(for="password") Password
+                        input#password.form-control(name="password", type="password")
+                    p
+                        a.btn.btn-link(href="/admin") Cancel
+                        button.btn.btn-default(type="submit", value="Log In") Log in

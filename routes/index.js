@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+<<<<<<< HEAD
   res.render('index', {
     title: 'Express'
   });
@@ -16,6 +17,9 @@ router.get('/checkout', function(req, res) {
   res.render('checkout', {
     userNameFull: "Beryl Berlioz",
   });
+=======
+  res.render('index', { title: 'Nozama Books', user: req.user });
+>>>>>>> development
 });
 
 module.exports = router;

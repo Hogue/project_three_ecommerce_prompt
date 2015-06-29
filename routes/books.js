@@ -3,6 +3,9 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var Book = require('../models/books.js');
+var fs = require('fs');
+var util = require('util');
+var jade = require('jade');
 
 router.get('/', function(req, res) {
   Book.find({}, function(err, bookList) {
@@ -27,14 +30,23 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', jsonParser);
-router.post('/', bodyParser());
 router.post('/', function(req, res) {
   Book.create(req.body, function(error, book) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      res.sendStatus(201);
+      fs.readFile('./views/book.jade', 'utf8', function(err, data) {
+        if (err) {
+          console.log(err);
+          res.sendStatus(400);
+        } else {
+          var userCompiler = jade.compile(data);
+          var html = userCompiler(book);
+          res.send(html);
+          res.status(200);
+        }
+      });
     }
   });
 });
@@ -54,18 +66,21 @@ router.patch('/:id', function(req, res) {
 
 
 router.delete('/:id', function(req, res) {
-  Book.remove({
+  Book.findOneAndRemove({
     _id: req.params.id
-  }, function(error) {
+  }, function(error, ghost) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      res.sendStatus(204);
+      res.send({
+        _id: ghost._id,
+        type: 'book'
+      });
+      res.status(204);
     }
   });
 });
-
 
 // router.get('/', function(req, res){
 //   res.send("It worked!");

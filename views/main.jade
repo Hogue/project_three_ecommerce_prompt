@@ -1,0 +1,103 @@
+extends layout
+
+block content
+
+  img#header-logo(src="/images/nozama_logo1.4.png", alt="Nozama logo")
+  h2.header NOZAMA
+  nav
+    .nav-wrapper
+      a.left.button-collapse(href="#", data-activates="mobile-menu")
+        i.material-icons menu
+      a#cart.right(href="#", data-activates="shopping-cart")
+        i.material-icons shopping_cart
+      ul.hide-on-med-and-down
+        li
+          a(href="#") My Account
+        li
+          a(href="#") Home
+        li
+          a(href="#cart")
+
+      ul.side-nav#mobile-menu
+        li
+          a.tooltipped(href="#" data-position="left" data-tooltip="Account info") My Account
+        li
+          a.tooltipped(href="#" data-position="left" data-tooltip="Go Home") Home
+      ul.side-nav#shopping-cart
+        li
+          a(href="/checkout") Checkout
+        li
+          a Item 1
+        li
+          a Item 2
+  main
+    .container
+      ul#genres
+        li
+        .row
+          .col.s12.m8.offset-m2
+            .card.hoverable.medium#fiction
+              .card-image
+                img(src='/images/nozama_logo1.4.png')
+              .card-content
+                span.left.card-title Fiction
+                ul.right
+                  li
+                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                  li
+                    a(href="#") Brandon Sanderson - Mistborn
+                  li
+                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+              .card-action
+                a(href="#") See More Titles
+        li
+        .row
+          .col.s12.m8.offset-m2
+            .card.hoverable.medium#history(style='opacity:0')
+              .card-image
+                img(src='/images/nozama_logo1.6.png')
+              .card-content
+                span.left.card-title History
+                ul.right
+                  li
+                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                  li
+                    a(href="#") Brandon Sanderson - Mistborn
+                  li
+                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+              .card-action
+                a(href="#") See More Titles
+        li
+        .row
+          .col.s12.m8.offset-m2
+            .card.hoverable.medium#philosophy(style='opacity:0')
+              .card-image
+                img(src='/images/nozama_logo1.4.png')
+              .card-content
+                span.card-title.left Philosophy
+                ul.right
+                  li
+                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                  li
+                    a(href="#") Brandon Sanderson - Mistborn
+                  li
+                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+              .card-action
+                a(href="#") See More Titles
+        li
+        .row
+          .col.s12.m8.offset-m2
+            .card.hoverable.medium#comp-sci(style='opacity:0')
+              .card-image
+                img(src='/images/nozama_logo1.6.png')
+              .card-content
+                span.card-title.left Computer Science
+                ul.right
+                  li
+                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                  li
+                    a(href="#") Brandon Sanderson - Mistborn
+                  li
+                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+              .card-action
+                a(href="#") See More Titles

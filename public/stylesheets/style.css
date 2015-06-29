@@ -1,10 +1,81 @@
+/*OUR COLOR SCHEMES:*/
+/*RGBs:
+  grandma's pillow: rgba(196,77,88,1);
+  Chery pink: rgba(255,107,107, 1);
+  Apple chic: rgba(199,244,100, 1);
+  PAcifica: rgba(78,205,196, 1);
+  MIghty Slate: rgba(85,98,112,1);
+  font-family: 'Roboto', sans-serif;
+
+*/
+/**/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400italic,300,400);
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: rgba(78,205,196, 1);
+}
+.card .card-title {
+  font-size: 2em;
+  font-weight: 400;
+  color: rgba(85,98,112,1);
+  padding-bottom: 0px !important;
+}
+
+.delete {
+  background-color: rgba(196, 77, 88, 1);
+}
+
+.delete:hover {
+  background-color: rgba(196, 77, 88, .75);
+}
+
+button.swirly {
+  background-color: rgba(78, 205, 196, 1);
+}
+
+button.swirly:hover {
+  background-color: rgba(78, 205, 196, .75);
+}
+
+h2 {
+  padding-left: 10px;
+  color: rgba(196, 77, 88, 1);
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom: 0;
+}
+
+img#header-logo {
+  width: 150;
+  height: 150px;
+  float: left;
+}
+
+nav {
+  background-color: rgba(255, 107, 107, 1);
+  margin-bottom: 50px;
+}
+
+.right {
+  float: right !important;
+}
+
+#cart {
+  float: right !important;
+  margin-right: 25px;
+}
+
+@media only screen and (max-width: 600px){
+  #cart {
+    padding-top:15px;
+  }
 }
 
 .delete {

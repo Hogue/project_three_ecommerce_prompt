@@ -1,8 +1,5 @@
-tr.order-item
+tr.order-item(data-id="#{_id}")
     td #{_id}
     td #{date}
-    td
-    td <a class="waves-effect waves-light btn delete" data-id="#{_id}">Delete</a>
-
-
-
+    td #{books}
+    td <a class="waves-effect waves-light btn delete" data-obj-type="order">Delete</a>
