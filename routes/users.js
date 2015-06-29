@@ -6,19 +6,39 @@ var express = require('express'),
   fs = require('fs'),
   User = require('../models/users.js'),
   util = require('util');
+  async = require('async');
+
 
 router.get('/', jsonParser);
 router.get('/', function(req, res, next) {
   User.find({}, function(err, usersList) {
-    if (err) {
-      console.log(err.name);
-      res.send('Error retrieving Contacts');
+    if(err) {
+      res.send("error retrieving users");
     } else {
-      res.json(usersList);
-      res.status(200);
-    }
-  });
+      async.each(usersList, function(user, done) {
+        user.orders(function(err, orders) {
+          if(err) {
+            console.log("it didn't work, shit");
+            next(err);
+          }
+          user.orderList = orders;
+          console.log("add orders to %s ", user.email);
+          done();
+        })
+      }, function(err, data){
+        if(err) {
+          next(err);
+        }
+        console.log(usersList);
+        res.json(usersList);
+        res.status(200);
+    });
+  };
+ });
 });
+
+
+
 
 router.get('/:id', jsonParser);
 router.get('/:id', function(req, res) {

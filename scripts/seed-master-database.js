@@ -41,45 +41,7 @@ var addUser = function(done) {
     nameFirst: 'Andrew',
     nameLast: 'Ellis',
     password: 'abc123',
-    orders: [{
-      user: {
-        email: 'drewkakes@gmail.com',
-        nameFirst: 'Andrew',
-        nameLast: 'Ellis',
-        password: 'abc123'
-      },
-      books: [{
-        title: 'Eloquent JavaScript: A Modern Introduction to Programming',
-        author: 'Marvin Haverbeke',
-        price: 28.93,
-        genre: 'programming',
-        isbn: '978-1593275846',
-        thumbnail: [{
-          url: 'http://postimg.org/image/sd1pp6g61/'
-        }]
-      }],
-      date: Date.now(),
-      sent: false
-    }, {
-      user: {
-        email: 'drewkakes@gmail.com',
-        nameFirst: 'Andrew',
-        nameLast: 'Ellis',
-        password: 'abc123'
-      },
-      books: [{
-        title: 'Eloquent JavaScript: A Modern Introduction to Programming',
-        author: 'Marvin Haverbeke',
-        price: 28.93,
-        genre: 'programming',
-        isbn: '978-1593275846',
-        thumbnail: [{
-          url: 'http://postimg.org/image/sd1pp6g61/'
-        }]
-      }],
-      date: Date.now(),
-      sent: false
-    }]
+    orders: []
   }, done);
 };
 

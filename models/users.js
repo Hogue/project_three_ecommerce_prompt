@@ -3,8 +3,8 @@
 //==============================================
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-  Order = require('./orders.js');
-var Hash = require('password-hash');
+    Order = require('./orders.js');
+    Hash = require('password-hash');
 
 //===ADDRESS SUB-SCHEMAs======
 var emailAddressSchema = new mongoose.Schema({
@@ -75,7 +75,7 @@ var userSchema = new Schema({
     required: true
   },
   Address: [addressSchema],
-  Orders: [Order]
+  Orders: [{type: Schema.Types.ObjectId, ref: "Order"}]
 });
 
 userSchema.statics.authenticate = function(email, password, callback) {
@@ -116,6 +116,16 @@ userSchema.virtual('orderHistory').get(function() {
     }
   });
   return ordersList;
+});
+
+userSchema.method('orders', function(done) {
+  User.find({
+    orders: {
+      $elemMatch: {
+        _id: this._id
+      }
+    }
+  }, done)
 });
 
 //create model
