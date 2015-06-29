@@ -6,14 +6,12 @@
 //require
 var mongoose = require('mongoose');
 var Book = require('./books.js');
-var User = require('./users.js');
 var Schema = mongoose.Schema;
 
 //Note: could install momentjs, a node module that parses dates for you easily
 //(see: http://stackoverflow.com/questions/7443142/how-do-i-format-dates-from-mongoose-in-node-js)
 var orderSchema = new mongoose.Schema({
-  user: {type: Schema.Types.ObjectId, ref: User},
-  books: [{type: Schema.Types.ObjectId, ref: Book}],
+  books: [{type: Schema.Types.ObjectId, ref: "Book"}],
   date: {
     type: Date,
     required: true,
@@ -30,3 +28,5 @@ var orderSchema = new mongoose.Schema({
 var Order = mongoose.model('Order', orderSchema);
 //export module
 module.exports = Order;
+
+

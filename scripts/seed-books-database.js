@@ -3,7 +3,6 @@ var async = require('async');
 var mongoose = require('mongoose');
 
 // connect to the contacts DB.
-console.log(config);
 mongoose.connect(config.mongo.dbUrl);
 
 // Contact is the constructor function for the Contact model.

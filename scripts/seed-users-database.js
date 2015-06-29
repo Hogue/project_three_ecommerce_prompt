@@ -19,7 +19,8 @@ async.series([
       email: 'drewkakes@gmail.com',
       password: 'jello99',
       nameFirst: 'Andrew',
-      nameLast: 'Ellis'
+      nameLast: 'Ellis',
+      orders: []
     }, done);
   }
   ], function(err){

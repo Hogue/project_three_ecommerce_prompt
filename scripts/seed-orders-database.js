@@ -22,25 +22,7 @@ async.series([
   function(done) {
     Order.create({
       user: User.id(),
-      books: Book.id(),
-      date: Date.now,
-      purchased: true
-    }, done);
-  },
-
-  function(done) {
-    Order.create({
-      user: User.id(),
-      books: Book.id(),
-      date: Date.now,
-      purchased: true
-    }, done);
-  },
-
-  function(done) {
-    Order.create({
-      user: User.id(),
-      books: Book.id(),
+      books: ObjectId("55919110b929c332be52449d"),
       date: Date.now,
       purchased: true
     }, done);

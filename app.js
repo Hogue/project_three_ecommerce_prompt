@@ -80,8 +80,7 @@ app.use('/checkout', checkout);
 // This uses express-generated middleware that serves static files
 // It looks for a directory at the path we pass in.
 // If the url matches anything in the directory, it will be served
-// Else: Next fires, and moves on to next handler
-app.use(express.static(path.join(__dirname, 'public')));
+// Else: Next fires, and moves on to next handler;
 
 // error handlers
 
