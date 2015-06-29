@@ -16,8 +16,8 @@ var nib = require('nib');
 var util = require('util');
 
 var Book = require('./models/books.js');
-var Order = require('.models/orders.js');
-var User = require('.models/users.js');
+var Order = require('./models/orders.js');
+var User = require('./models/users.js');
 
 var routes = require('./routes/index.js');
 var admin = require('./routes/admin.js');
