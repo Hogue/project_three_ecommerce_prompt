@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
 
 // GET individual orders listing
 
-router.get('/orders/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   Order.find({
     _id: req.params.id
   }, function(error, order) {
@@ -51,27 +51,6 @@ router.get('user/:id/orders', function(req, res, next) {
     }
   });
 });
-
-// app.post('/articles', jsonParser);
-// app.post('/articles', function(req, res) {
-//   Article.create(req.body,
-// function(error, article) {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       fs.readFile('./templates/article.jade', 'utf8', function(err, data) {
-//         if (err) {
-//           res.sendStatus(400);
-//         } else {
-//           var articleCompiler = jade.compile(data);
-//           var html = articleCompiler(article);
-//           res.send(html);
-//           res.status(200);
-//         }
-//       });
-//     }
-//   });
-// });
 
 //POST new order
 router.post('/', jsonParser);
@@ -125,7 +104,8 @@ router.patch('/:id', function(req, res) {
 });
 
 //DELETE order
-router.delete('/orders/:id', function(req, res) {
+
+router.delete('/:id', function(req, res) {
   Order.remove({
     _id: req.params.id
   }, function(error) {

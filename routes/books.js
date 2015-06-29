@@ -5,8 +5,8 @@ var jsonParser = bodyParser.json();
 var Book = require('../models/books.js');
 
 router.get('/', function(req, res) {
-  Book.find({},function(err, bookList) {
-    if(err) {
+  Book.find({}, function(err, bookList) {
+    if (err) {
       res.sendStatus(404);
     }
     res.json(bookList);
@@ -17,8 +17,8 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
   Book.find({
     _id: req.params.id
-  }, function(err, book){
-    if(err) {
+  }, function(err, book) {
+    if (err) {
       console.log(err);
       set.sendStatus(404);
     }
@@ -52,6 +52,7 @@ router.patch('/:id', function(req, res) {
   });
 });
 
+
 router.delete('/:id', function(req, res) {
   Book.remove({
     _id: req.params.id
@@ -64,7 +65,6 @@ router.delete('/:id', function(req, res) {
     }
   });
 });
-
 
 
 // router.get('/', function(req, res){

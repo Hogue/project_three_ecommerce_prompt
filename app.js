@@ -85,6 +85,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 var server = app.listen(3000, function() {

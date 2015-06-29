@@ -25,13 +25,13 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  Orders: [Order.schema]
+  Orders: [Order]
 });
 
 userSchema.virtual('library').get(function() {
   var library = [];
-  this.Orders.forEach(function(order){
-    order.books.forEach(function(book){
+  this.Orders.forEach(function(order) {
+    order.books.forEach(function(book) {
       library.push(book);
     });
   });
@@ -43,7 +43,7 @@ userSchema.virtual('nameFull').get(function() {
 
 userSchema.virtual('orderHistory').get(function() {
   ordersList = [];
-  Orders.forEach(function(order){
+  Orders.forEach(function(order) {
     if (order.date < Date.now()) {
       ordersList.push(order);
     }
