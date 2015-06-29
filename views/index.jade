@@ -2,4 +2,13 @@ extends layout
 
 block content
   h1 Andrew Should Put Stuff Here!
+  if (user)
+    p You are logged in as #{user.nameFull}
+      a(href="/auth/logout")  logout
+  else
+    p
+      a(href="/auth/login") Please login
+      |  or
+      a(href="/admin/add-user")  register
+
 
