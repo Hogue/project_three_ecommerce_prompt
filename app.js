@@ -37,6 +37,9 @@ var genre = require('./routes/genre.js');
 var checkout = require('./routes/checkout.js')
 
 mongoose.connect(config.mongo.dbUrl);
+mongoose.connection.on('error', function(error) {
+  console.log(error);
+});
 
 var mongoStore = new MongoDBStore({
   uri: config.mongo.dbUrl,
