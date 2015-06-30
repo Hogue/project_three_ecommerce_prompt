@@ -35,28 +35,60 @@ var addBook = function(done) {
   });
 };
 
+var addBookTwo = function(done) {
+  Book.create({
+    title: 'Second Book',
+    author: 'Brub',
+    price: 3.50,
+    genre: 'fantasy',
+    isbn: '978-1599085846',
+    thumbnail: [
+    {
+      url: 'http://postimg.org/image/sd1pp6g61/'
+    }]
+  }, function(err, book) {
+    bookIDs["book two"] = book._id;
+    console.log(bookIDs);
+    done();
+  });
+};
+
 var removeOrders = function(done) {
   Order.remove({}, done);
 };
 
 var addOrder = function(done) {
   Order.create({
-    books: [bookIDs["eloquent javascript"]],
+    books: [bookIDs["eloquent javascript"],bookIDs["book two"]],
     date: Date.now(),
     sent: true,
   },
     function(err, order) {
       orderIDs["Order One"] = order._id;
+      console.log(order.books);
       done();
   });
 };
+
+// var addOrder = function(done) {
+//   Order.create({
+//     books: [bookIDs["book two"]],
+//     date: Date.now(),
+//     sent: true,
+//   },
+//     function(err, order) {
+//       orderIDs["Order Two"] = order._id;
+//       done();
+//   });
+// };
+
 var removeUsers = function(done) {
   User.remove({}, done);
 };
 
 var addUser = function(done) {
   User.create({
-    email: 'drewasdfasdfkakes@gmail.com',
+    email: 'drewkakes@gmail.com',
     nameFirst: 'Andrew',
     nameLast: 'Ellis',
     password: 'abc123',
@@ -77,6 +109,7 @@ async.series([
   removeBooks,
   // create socks contacts
   addBook,
+  addBookTwo,
   removeOrders,
   addOrder,
   removeUsers,

@@ -118,6 +118,17 @@ userSchema.virtual('orderHistory').get(function() {
   return ordersList;
 });
 
+userSchema.virtual('getCart').get(function() {
+  cart = []
+  this.Orders.forEach(function(order) {
+   if(order.date === Date.now() && order.purchased === false) {
+    Cart.push(order);
+   }
+  });
+  return cart;
+});
+
+
 userSchema.method('orders', function(done) {
   User.find({
     orders: {
