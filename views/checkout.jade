@@ -1,61 +1,62 @@
 extends layout
 block content
-  h1 Checkout Page
-  div#userName
-  if(user)
-    h4 Cart of: #{user.nameFull}
+  .container
+    h1 Checkout
+    div#userName
+      if(user)
+      h4 Cart of: #{user.nameFull}
 
-  h4 In your cart:
-  div Book(s) in cart go here
+    h4 In your cart:
+    div Book(s) in cart go here
+      br
+      h4 Mailing Address:
+     //- CHANGE action etc:
+    //-form(action="" method="POST" id="address-form")
+      div(class="form-row")
+        label
+          span Street
+          input(type="text", size="20" data-stripe="number")
+      div(class="form-row")
+        label
+          span Apartment Number
+          input(type="text", size="5" data-stripe="cvc")
+      div(class="form-row")
+        label
+          span City
+          input(type="text", size="20" data-stripe="exp-month")
+      div(class="form-row")
+        label
+          span State
+          input(type="text", size="2" data-stripe="exp-month")
+      div(class="form-row")
+        label
+          span Zip Code
+          input(type="text", size="5" data-stripe="exp-month")
+      div(class="form-row")
+        label
+          span Country
+          input(type="text", size="35" data-stripe="exp-month")
+
     br
-    h4 Mailing Address:
-    //- CHANGE action etc:
-  //-form(action="" method="POST" id="address-form")
-    div(class="form-row")
-      label
-        span Street
-        input(type="text", size="20" data-stripe="number")
-    div(class="form-row")
-      label
-        span Apartment Number
-        input(type="text", size="5" data-stripe="cvc")
-    div(class="form-row")
-      label
-        span City
-        input(type="text", size="20" data-stripe="exp-month")
-    div(class="form-row")
-      label
-        span State
-        input(type="text", size="2" data-stripe="exp-month")
-    div(class="form-row")
-      label
-        span Zip Code
-        input(type="text", size="5" data-stripe="exp-month")
-    div(class="form-row")
-      label
-        span Country
-        input(type="text", size="35" data-stripe="exp-month")
-
-  br
-  span(id="validated")
-  h4 Payment Information:
-  form(action="/stripe" method="POST" id="payment-form")
-    div(class="payment-errors")
-    div(class="form-row")
-      label
-        span Card Number
-        input(type="text", size="20" data-stripe="number")
-    div(class="form-row")
-      label
-        span CCV
-        input(type="text", size="4" data-stripe="cvc")
-    div(class="form-row")
-      label
-        span Expiration (MM/YYYY)
-        input(type="text", size="2" data-stripe="exp-month")
-        span /
-        input(type="text", size="4" data-stripe="exp-year")
-    button(type="submit") Submit Payment
+    span(id="validated")
+    h4 Payment Information:
+    form(action="/stripe" method="POST" id="payment-form")
+      div(class="payment-errors")
+      div(class="form-row")
+        label
+          span Card Number
+          input(type="text", size="20" data-stripe="number")
+      div(class="form-row")
+        label
+          span CCV
+          input(type="text", size="4" data-stripe="cvc")
+      div(class="form-row")
+        label
+          span Expiration (MM/YYYY)
+          input(type="text", size="2" data-stripe="exp-month")
+          span /
+          input(type="text", size="4" data-stripe="exp-year")
+      button(type="submit") Submit Payment
 
 
   include layout_scripts

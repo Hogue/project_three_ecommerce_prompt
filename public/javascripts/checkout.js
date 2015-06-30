@@ -1,5 +1,18 @@
 Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy');
 
+
+function formSubmitHandler(event) {
+  //event.preventDefault();
+  var form = $(this);
+  // Disable the submit button to prevent repeated clicks
+  $('form').find('button').prop('disabled', true);
+
+  Stripe.card.createToken(form, stripeResponseHandler);
+
+  // Prevent the form from submitting with the default action
+  return false;
+}
+
 function stripeResponseHandler(status, response) {
   var form = $('#payment-form');
 
@@ -13,23 +26,13 @@ function stripeResponseHandler(status, response) {
     // Insert the token into the form so it gets submitted to the server
     form.append($('<input type="hidden" name="stripeToken" />').val(token));
     // and submit
+    $('#payment-form').off("submit", formSubmitHandler);
     form.get(0).submit();
   };
 };
 
 $(function($) {
-  $('#payment-form').submit(function(event) {
-    //event.preventDefault();
-    var form = $(this);
-    debugger;
-    // Disable the submit button to prevent repeated clicks
-    //$('form').find('button').prop('disabled', true);
-
-    Stripe.card.createToken(form, stripeResponseHandler);
-
-    // Prevent the form from submitting with the default action
-    return false;
-  });
+  $('#payment-form').submit(formSubmitHandler);
 });
 
 

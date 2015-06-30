@@ -15,7 +15,7 @@ router.get('/stripe', function(req, res, next) {
   res.send("Scram!");
 });
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
   console.log('got to post stripe');
   //Obtain Stripe Token
   var stripeToken = req.body.stripeToken;
@@ -31,10 +31,16 @@ router.post('/', function(req, res) {
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       console.log('Card declined');
+      res.sendStatus(400);
       // The card has been declined
     }
-    console.log(err);
   });
+  next();
 })
+
+router.post('/', function(req, res) {
+  res.redirect('./orderComplete');
+});
+
 
 module.exports = router;
