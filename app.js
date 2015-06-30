@@ -1,5 +1,4 @@
 var config = require('./config/');
-
 var express = require('express');
 var async = require('async');
 var mongoose = require('mongoose');
@@ -11,8 +10,6 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 var flash = require('connect-flash');
 var passport = require('./auth/local-strategy.js');
 var uuid = require('node-uuid');
-// var cookieParser = require('cookie-parser');
-
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var jade = require('jade');
@@ -20,11 +17,9 @@ var fs = require('fs');
 var stylus = require('stylus');
 var nib = require('nib');
 var util = require('util');
-
 var Book = require('./models/books.js');
 var Order = require('./models/orders.js');
 var User = require('./models/users.js');
-
 var routes = require('./routes/index.js');
 var admin = require('./routes/admin.js');
 var users = require('./routes/users.js');

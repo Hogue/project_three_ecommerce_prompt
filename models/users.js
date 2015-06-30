@@ -113,34 +113,17 @@ userSchema.virtual('nameFull').get(function() {
 
 userSchema.virtual('orderHistory').get(function() {
   ordersList = [];
-  Orders.forEach(function(order) {
-    if (order.date < Date.now()) {
-      ordersList.push(order);
-    }
-  });
+  for (var i = 0; i < this.Orders.length; i++) {
+    ordersList.push(this.Orders[i]);
+  }
   return ordersList;
 });
 
-userSchema.virtual('getCart').get(function() {
-  cart = [];
-  this.Orders.forEach(function(order) {
-    if (order.date === Date.now() && order.purchased === false) {
-      Cart.push(order);
-    }
-  });
-  return cart;
+
+userSchema.virtual('lastOrder').get(function() {
+    return this.Orders;
 });
 
-
-userSchema.method('orders', function(done) {
-  User.find({
-    orders: {
-      $elemMatch: {
-        _id: this._id
-      }
-    }
-  }, done());
-});
 
 //create model
 var User = mongoose.model('User', userSchema);

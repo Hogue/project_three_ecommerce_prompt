@@ -55,8 +55,8 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.get('/:id/orders', jsonParser);
-router.get('/:id/orders', function(req, res) {
+router.get('/:id/cart', jsonParser);
+router.get('/:id/cart', function(req, res) {
   User.find({
     _id: req.params.id
   }, function(err, ordersFound) {
