@@ -102,6 +102,14 @@ var addUser = function(done) {
   });
 };
 
+var shitTest = function(done){
+  User.findOne(userIDs['Andrew Ellis'], function(err, result){
+    result.orders();
+    console.log(result.orders());
+    done();
+  });
+};
+
 
 
 async.series([
@@ -113,7 +121,8 @@ async.series([
   removeOrders,
   addOrder,
   removeUsers,
-  addUser
+  addUser,
+  shitTest
   ],
   // fire the function that will be invoked
   // when the above functions are done
