@@ -62,7 +62,7 @@ $(document).ready(function() {
     };
     $.ajax({
       method: 'POST',
-      url: 'http://' + hostname + '/nozama/books',
+      url: 'http://' + hostname + '/books',
       data: JSON.stringify(book),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
     };
     $.ajax({
         method: 'POST',
-        url: 'http://' + hostname + '/nozama/users',
+        url: 'http://' + hostname + '/users',
         data: JSON.stringify(user),
         contentType: "application/json; charset=utf-8"
       }).done(function(res) {
@@ -116,7 +116,7 @@ $(document).ready(function() {
     };
     $.ajax({
       method: 'POST',
-      url: 'http://' + hostname + '/nozama/orders',
+      url: 'http://' + hostname + '/orders',
       data: JSON.stringify(order),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
@@ -144,7 +144,7 @@ $(document).ready(function() {
     var type = $(this).data('obj-type');
     var classSelector = '.' + type + '-item';
     var oid = $(this).parents(classSelector).data('id');
-    var delUrl = 'http://' + hostname + '/nozama/users' + type + 's/' + oid;
+    var delUrl = 'http://' + hostname + '/users' + type + 's/' + oid;
 
     $.ajax({
       url: delUrl,
