@@ -18,14 +18,17 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  Book.find({
+  Book.findOne({
     _id: req.params.id
   }, function(err, book) {
+    console.log(book);
     if (err) {
       console.log(err);
       set.sendStatus(404);
     }
-    res.json(book);
+    res.render('book-view', {
+      book: book
+    });
   });
 });
 

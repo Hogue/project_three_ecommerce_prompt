@@ -61,7 +61,7 @@ $(document).ready(function() {
     };
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/books',
+      url: 'http://mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama/books',
       data: JSON.stringify(book),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
@@ -85,7 +85,7 @@ $(document).ready(function() {
     };
     $.ajax({
         method: 'POST',
-        url: 'http://localhost:3000/users',
+        url: 'http://mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama/users',
         data: JSON.stringify(user),
         contentType: "application/json; charset=utf-8"
       }).done(function(res) {
@@ -115,7 +115,7 @@ $(document).ready(function() {
     };
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/orders',
+      url: 'http://mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama/orders',
       data: JSON.stringify(order),
       contentType: "application/json; charset=utf-8"
     }).done(function(res) {
@@ -143,7 +143,7 @@ $(document).ready(function() {
     var type = $(this).data('obj-type');
     var classSelector = '.' + type + '-item';
     var oid = $(this).parents(classSelector).data('id');
-    var delUrl = 'http://localhost:3000/' + type + 's/' + oid;
+    var delUrl = 'http://mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama/' + type + 's/' + oid;
 
     $.ajax({
       url: delUrl,

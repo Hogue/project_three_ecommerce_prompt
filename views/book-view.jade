@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  main
+    .container
+      ul#genres
+        li
+        .row
+          .col.s12.m8.l10.offset-m2.offset-l1
+            .card.hoverable.large
+              .card-image
+                //- img(src='') TODO: HERE WE SHOULD PUT THE THUMBNAIL OF THE BOOK
+                span.left.card-title #{book.title}
+              .card-content
+
+                span.left By #{book.author}
+                ul
+                  li
+                    p Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. In turpis. Mauris sollicitudin fermentum libero. Curabitur vestibulum aliquam leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.
+              .card-action
+                .left
+                  $ #{book.price}
+                .right
+                  a(href="POST GOES HERE") Add To Cart
+  include layout_scripts

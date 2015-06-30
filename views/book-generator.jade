@@ -32,7 +32,7 @@ block content
                         th(data-field="deleter") Delete
                 tbody
                     for book in books
-                        tr.book-item(data-id="#{book._id}")
+                        tr.book-obj(data-id="#{book._id}")
                             td #{book.title}
                             td #{book.author}
                             td #{book.price}

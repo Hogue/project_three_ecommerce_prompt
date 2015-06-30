@@ -6,19 +6,24 @@ block content
       ul#genres
         li
         .row
+          .col.s2.offset-s5
+            a(href="/genre")
+              h4.center-align All Genres
+        .row
           .col.s12.m8.l10.offset-m2.offset-l1
-            .card.hoverable.large#fiction
+
+            .card.hoverable.large#fantasy
               .card-image
                 img(src='/images/By_Benjamin_Sloth.jpg')
               .card-content
-                span.left.card-title Fiction
+                span.left.card-title Fantasy
                 ul.right
                   li
-                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                    a(href="#") Isaac Asimov - Foundation
                   li
                     a(href="#") Brandon Sanderson - Mistborn
                   li.hide-on-med-and-down
-                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+                    a(href="#") George R. R. Martin - A Game of Thrones
               .card-action
                 a(href="/genre/fantasy") See More Titles
         li
@@ -31,13 +36,13 @@ block content
                 span.left.card-title History
                 ul.right
                   li
-                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                    a(href="/authors?=asimov") Howard Zinn - A People's History of the United States
                   li
-                    a(href="#") Brandon Sanderson - Mistborn
+                    a(href="#") Winston Churchill - My Early Life
                   li.hide-on-med-and-down
-                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+                    a(href="#") James W. Loewen - Lies My Teacher Told Me
               .card-action
-                a(href="#") See More Titles
+                a(href="/genre/history") See More Titles
         li
         .row
           .col.s12.m8.l10.offset-m2.offset-l1
@@ -48,13 +53,13 @@ block content
                 span.card-title.left Philosophy
                 ul.right
                   li
-                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                    a(href="/authors?=asimov") Zen and the Art of Motorcycle Maintenance - Robert M. Pirsig (7.99)
                   li
-                    a(href="#") Brandon Sanderson - Mistborn
+                    a(href="#") Leviathan - Thomas Hobbes
                   li.hide-on-med-and-down
-                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+                    a(href="#") Jean Jacques Rousseau - The Social Contract
               .card-action
-                a(href="#") See More Titles
+                a(href="/genre/philosophy") See More Titles
         li
         .row
           .col.s12.m8.l10.offset-m2.offset-l1
@@ -65,11 +70,11 @@ block content
                 span.card-title.left Computer Science
                 ul.right
                   li
-                    a(href="/authors?=asimov") Isaac Asimov - Foundation
+                    a(href="#") Charles Petzold - Code: The Hidden Language of Computer Hardware and Software
                   li
-                    a(href="#") Brandon Sanderson - Mistborn
+                    a(href="#") Jon Erickson - Hacking: The Art of Exploitation
                   li.hide-on-med-and-down
-                    a(href="#") C.S. Lewis - The Chronicles of Narnia
+                    a(href="#") John Zelle - Python Programming: An Introduction to Computer Science
               .card-action
-                a(href="#") See More Titles
+                a(href="/genre/comp-sci") See More Titles
   include layout_scripts

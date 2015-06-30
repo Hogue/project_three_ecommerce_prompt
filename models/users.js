@@ -3,8 +3,8 @@
 //==============================================
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-    Order = require('./orders.js');
-    Hash = require('password-hash');
+  Order = require('./orders.js');
+Hash = require('password-hash');
 
 //===ADDRESS SUB-SCHEMAs======
 var emailAddressSchema = new mongoose.Schema({
@@ -42,7 +42,7 @@ var addressSchema = new mongoose.Schema({
   zipCode: {
     type: String,
     required: true
-    //match: /^\d{5}(-\d{4})?$/
+      //match: /^\d{5}(-\d{4})?$/
   },
   country: {
     type: String,
@@ -75,7 +75,10 @@ var userSchema = new Schema({
     required: true
   },
   Address: [addressSchema],
-  Orders: [{type: Schema.Types.ObjectId, ref: "Order"}]
+  Orders: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order"
+  }]
 });
 
 userSchema.statics.authenticate = function(email, password, callback) {
@@ -119,11 +122,11 @@ userSchema.virtual('orderHistory').get(function() {
 });
 
 userSchema.virtual('getCart').get(function() {
-  cart = []
+  cart = [];
   this.Orders.forEach(function(order) {
-   if(order.date === Date.now() && order.purchased === false) {
-    Cart.push(order);
-   }
+    if (order.date === Date.now() && order.purchased === false) {
+      Cart.push(order);
+    }
   });
   return cart;
 });
@@ -136,7 +139,7 @@ userSchema.method('orders', function(done) {
         _id: this._id
       }
     }
-  }, done)
+  }, done());
 });
 
 //create model
