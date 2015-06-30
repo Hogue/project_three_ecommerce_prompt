@@ -6,16 +6,20 @@ block content
       .row
         for book in bookList
           .col.s6.offset-s3.m4.l4
-            a(href="/users/#{user._id}")
-              .card.small.hoverable.book-item(id='#{book._id}')
-                span.left.card-title #{book.title}
-                  |<br>
-                  | - #{book.author}
-                .card-content
-                  |<br><br>
-                  p $ #{book.price}
-                .card-action
-                  a(href=)
+            if (user)
+              a(href="/users/#{user._id}")
+            else
+              a(href='/books/#{book._id}')
+                .card.small.hoverable.book-item(id='#{book._id}')
+                  span.left.card-title #{book.title}
+                    |<br>
+                    | - #{book.author}
+                  .card-content
+                    |<br><br>
+                    .left $ #{book.price}
+                  .card-action
+                    .right
+                      a(href='#') BUY ME
 
 
 
