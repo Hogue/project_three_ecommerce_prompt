@@ -3,7 +3,7 @@ var config = require('./config.global.js');
 // make any production-specific changes here
 
 config.env = 'production';
-// config.hostname = 'intense-coast-5573.herokuapp.com';
+config.hostname = 'arcane-escarpment-7767.herokuapp.com';
 config.serverPort = process.env.PORT; // heroku is particular
 
 // config.authCallbackUrl = 'https://intense-coast-5573.herokuapp.com/auth/github/callback';
