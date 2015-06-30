@@ -6,7 +6,7 @@ block content
         form#add-user
             .row
                 .input-field.col.s12
-                    input(type="text", id="user-first-name" placeholder='Bilbo')
+                    input(type="text", id="user-first-name" placeholder='Bilbo', value="Bilbo")
                     label(for="user-first-name") First Name:
                 .input-field.col.s12
                     input(type="text", id="user-last-name" placeholder='Baggins')
@@ -28,7 +28,6 @@ block content
                         th(data-field="email") Email
                         th(data-field="first-name") First Name
                         th(data-field="last-name") Last Name
-                        th(data-ifled="password") Password
                         th(data-field="deleter") Delete
                 tbody
                     for user in users
@@ -36,7 +35,6 @@ block content
                             td #{user.email}
                             td #{user.nameFirst}
                             td #{user.nameLast}
-                            td #{user.password}
                             td <a class="waves-effect waves-light btn delete" data-obj-type="user">Delete</a>
 
     include layout_scripts

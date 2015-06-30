@@ -48,6 +48,7 @@ script(type='text/javascript').
     $('form[name="add-order"]').on('submit', function(event){
       event.preventDefault();
         var order = {
+        books: $('#order-books-id').val(),
         date: Date.now(),
         purchased: false
         };

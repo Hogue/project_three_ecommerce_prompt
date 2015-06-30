@@ -109,6 +109,7 @@ $(document).ready(function() {
     currentForm = $(this);
 
     var order = {
+      books: $('#order-books-id').val(),
       date: Date.now(),
       purchased: false
     };

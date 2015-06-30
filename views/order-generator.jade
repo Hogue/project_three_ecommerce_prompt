@@ -4,10 +4,9 @@ block content
     .row
       .col.s4
         form#add-order
-            label(for="order-order-id") order ID:
-            input(type="text", id="order-order-id")
-            label(for="order-books-id") Book ID:
-            input(type="text", id="order-books-id")
+            .input-field
+                input(type="text", id="order-books-id" placeholder="Book ID")
+                label(for="order-books-id") Book ID:
             |<br><br>
             button.btn.waves-effect.waves-light.swirly(type="submit") Submit
       .col.s8

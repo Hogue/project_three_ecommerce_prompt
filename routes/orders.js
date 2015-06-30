@@ -56,8 +56,7 @@ router.get('user/:id/orders', function(req, res, next) {
 router.post('/', jsonParser);
 router.post('/', function(req, res) {
   Order.create({
-    user: req.body.user,
-    books: req.body.books,
+    books: [req.body.books],
     date: req.body.date,
     purchased: false
   }, function(err, promise) {
@@ -73,7 +72,6 @@ router.post('/', function(req, res) {
           var userCompiler = jade.compile(data);
           var html = userCompiler(promise);
           res.send(html);
-          console.log(html);
           res.status(200);
         }
       });
