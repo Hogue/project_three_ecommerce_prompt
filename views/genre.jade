@@ -7,7 +7,17 @@ block content
         for book in bookList
           .col.s6.offset-s3.m4.l4
             if (user)
-              a(href="/users/#{user._id}")
+              a(href="/books/#{book._id}")
+                .card.small.hoverable.book-item(id='#{book._id}')
+                  span.left.card-title #{book.title}
+                    |<br>
+                    | - #{book.author}
+                  .card-content
+                    |<br><br>
+                    .left $ #{book.price}
+                  .card-action
+                    .right
+                      a(href='#') BUY ME
             else
               a(href='/books/#{book._id}')
                 .card.small.hoverable.book-item(id='#{book._id}')
