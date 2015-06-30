@@ -39,7 +39,7 @@ var checkout = require('./routes/checkout.js')
 mongoose.connect(config.mongo.dbUrl);
 
 var mongoStore = new MongoDBStore({
-  uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
+  uri: config.mongo.dbUrl,
   collection: 'webSessions'
 });
 
@@ -106,7 +106,7 @@ app.use(function(err, req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-var server = app.listen(3000, function() {
+var server = app.listen(config.serverPort, function() {
   var host = server.address().address;
   var port = server.address().port;
 
