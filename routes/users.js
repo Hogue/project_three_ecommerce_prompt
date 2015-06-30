@@ -64,8 +64,8 @@ router.get('/:id/orders', function(req, res) {
       console.log(err.name);
       res.send(err.name);
     } else {
-      console.log(ordersFound);
-      res.json(ordersFound.orders);
+      console.log(ordersFound[0]);
+      res.json(ordersFound[0].Orders);
       res.status(200);
     }
   });

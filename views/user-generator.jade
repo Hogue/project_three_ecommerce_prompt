@@ -13,8 +13,8 @@ block content
                     label(for="user-last-name") LastName:
             .row
                 .input-field.col.s12
-                    input.validate(type="text", id="user-email" placeholder='BBaggins111@shire.co.nz')
-                    label(for="user-email") Email:
+                    input.validate(type="email", pattern=".{0}|.{8,}", id="user-email", placeholder='BBaggins111@shire.co.nz', title="You must enter 8 or more digits")
+                    label(for="user-email" data-error="Please Enter Valid Email" data-success="Thanks!") Email:
                 .input-field.col.s12
                     input(type="password", id="user-password" placeholder='Password')
                     label(for="user-password") Password:

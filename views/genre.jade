@@ -6,7 +6,10 @@ block content
       .row
         for book in bookList
           .col.s6.offset-s3.m4.l4
-            a(href="/users/#{user._id}")
+            if(user)
+              a(href="/users/#{user._id}")
+            else
+              a(href="/auth/login")
               .card.small.hoverable.book-item(id='#{book._id}')
                 span.left.card-title #{book.title}
                   |<br>
