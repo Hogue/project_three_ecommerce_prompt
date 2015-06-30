@@ -2,14 +2,14 @@ var config = require('../config');
 var async = require('async');
 var mongoose = require('mongoose');
 
-mongoose.connect(config.mongo.dbUrl);
+mongoose.connect('mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama');
 
 // Contact is the constructor function for the Contact model.
 var Book = require('../models/books.js');
 var User = require('../models/users.js');
 var Order = require('../models/orders.js');
 
-var bookIDs = {};
+var bookIDs = [];
 var userIDs = {};
 var orderIDs = {};
 
@@ -18,39 +18,52 @@ var removeBooks = function(done) {
   Book.remove({}, done);
 };
 
-var addBook = function(done) {
-  Book.create({
-    title: 'Eloquent JavaScript: A Modern Introduction to Programming',
-    author: 'Marvin Haverbeke',
-    price: 28.93,
-    genre: 'programming',
-    isbn: '978-1593275846',
-    thumbnail: [
-    {
-      url: 'http://postimg.org/image/sd1pp6g61/'
-    }]
-  }, function(err, book) {
-    bookIDs["eloquent javascript"] = book._id;
-    done();
-  });
-};
-
 var addBookTwo = function(done) {
   Book.create({
-    title: 'Second Book',
-    author: 'Brub',
+    title: 'Foundation',
+    author: 'Isaac Asimov',
     price: 3.50,
-    genre: 'fantasy',
+    genre: 'science fiction',
     isbn: '978-1599085846',
-    thumbnail: [
-    {
+    thumbnail: [{
       url: 'http://postimg.org/image/sd1pp6g61/'
     }]
   }, function(err, book) {
-    bookIDs["book two"] = book._id;
-    console.log(bookIDs);
-    done();
-  });
+    bookIDs.push(book._id);
+
+  }, done());
+};
+
+var addBookThree = function(done) {
+  Book.create({
+    title: 'Mistborn',
+    author: 'Brandon Sanderson',
+    price: 13.50,
+    genre: 'fantasy',
+    isbn: '978-1049085846',
+    thumbnail: [{
+      url: 'http://postimg.org/image/sd1pp6g61/'
+    }]
+  }, function(err, book) {
+    bookIDs.push(book._id);
+
+  }, done());
+};
+
+var addBookFour = function(done) {
+  Book.create({
+    title: 'A Game of Thrones',
+    author: 'George R. R. Martin',
+    price: 14.99,
+    genre: 'fantasy',
+    isbn: '978-04958089545',
+    thumbnail: [{
+      url: 'http://postimg.org/image/sd1pp6g61/'
+    }]
+  }, function(err, book) {
+    bookIDs.push(book._id);
+
+  }, done());
 };
 
 var removeOrders = function(done) {
@@ -59,28 +72,15 @@ var removeOrders = function(done) {
 
 var addOrder = function(done) {
   Order.create({
-    books: [bookIDs["eloquent javascript"],bookIDs["book two"]],
-    date: Date.now(),
-    sent: true,
-  },
+      books: [bookIDs[0], bookIDs[1]],
+      date: Date.now(),
+      sent: true,
+    },
     function(err, order) {
       orderIDs["Order One"] = order._id;
-      console.log(order.books);
-      done();
-  });
-};
 
-// var addOrder = function(done) {
-//   Order.create({
-//     books: [bookIDs["book two"]],
-//     date: Date.now(),
-//     sent: true,
-//   },
-//     function(err, order) {
-//       orderIDs["Order Two"] = order._id;
-//       done();
-//   });
-// };
+    }, done());
+};
 
 var removeUsers = function(done) {
   User.remove({}, done);
@@ -93,45 +93,36 @@ var addUser = function(done) {
     nameLast: 'Ellis',
     password: 'abc123',
     Orders: orderIDs["Order One"]
-  }, function(err, user){
-      // user.orders.set(0, mongoose.Types.ObjectId(orderIDs["Order One"]));
-      // user.save(function(err) {
-         userIDs['Andrew Ellis'] = user._id;
-         done();
-      // });
-  });
+  }, function(err, user) {
+    userIDs['Andrew Ellis'] = user._id;
+  }, done());
 };
 
-var shitTest = function(done){
-  User.findOne(userIDs['Andrew Ellis'], function(err, result){
+var shitTest = function(done) {
+  User.findOne(userIDs['Andrew Ellis'], function(err, result) {
     result.orders();
     console.log(result.orders());
-    done();
-  });
+  }, done());
 };
 
 
 
 async.series([
-  // remove contacts
-  removeBooks,
-  // create socks contacts
-  addBook,
-  addBookTwo,
-  removeOrders,
-  addOrder,
-  removeUsers,
-  addUser,
-  shitTest
+    removeBooks,
+    addBookThree,
+    addBookFour,
+    addBookTwo,
+    removeOrders,
+    addOrder,
+    removeUsers,
+    addUser,
+    shitTest
   ],
-  // fire the function that will be invoked
-  // when the above functions are done
   function(err) {
-    if(err) {
+    if (err) {
       console.error(err);
     }
-    // drop the db, because we don't need it anymore
     mongoose.disconnect();
   }
 
-  );
+);

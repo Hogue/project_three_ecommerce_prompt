@@ -34,9 +34,9 @@ var charge = require('./routes/charge.js');
 var auth = require('./routes/auth.js');
 var main = require('./routes/main.js');
 var genre = require('./routes/genre.js');
-var checkout = require('./routes/checkout.js')
+var checkout = require('./routes/checkout.js');
 
-mongoose.connect(config.mongo.dbUrl);
+mongoose.connect('mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama');
 
 var mongoStore = new MongoDBStore({
   uri: "mongodb://andrew.hogue:Hog94306-@ds063899.mongolab.com:63899/nozama",
