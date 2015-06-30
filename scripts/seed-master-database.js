@@ -10,6 +10,10 @@ var Book = require('../models/books.js');
 var User = require('../models/users.js');
 var Order = require('../models/orders.js');
 
+var tempBook = {};
+var tempOrder = {};
+var tempUser = {};
+
 var removeBooks = function(done) {
   Book.remove({}, done);
 };

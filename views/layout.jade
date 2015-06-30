@@ -20,11 +20,14 @@ html
             else
               include logged-out-menu
         ul.side-nav#shopping-cart
-          li
-            a(href="/checkout")
-                b Checkout
-          li
-            a Item 1
-          li
-            a Item 2
+          if (order)
+            li
+              a(href="/checkout")
+            for book in user.orders.currentCart
+              li
+                a(href='/books/#{book._id}') #{book.title}
+
+          else
+            a
+              b No Cart Items!
     block content
