@@ -1,0 +1,22 @@
+extends layout
+block content
+  .container
+    h1 Checkout
+    div#userName
+      if(user)
+      h4 Thank you, #{user.nameFull}! Your order will be along soon.
+
+    h4 Your Order:
+    div#orderPlaced
+      p #{book}
+      p #{author}
+      p #{price}
+
+    h4 Hooray!!
+
+    a(href="./main") Browse Some More
+    //- a(href="/auth/login") View Orders
+
+
+
+  include layout_scripts

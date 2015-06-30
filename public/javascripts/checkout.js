@@ -1,44 +1,38 @@
 Stripe.setPublishableKey('pk_test_T3boZgfJSj7teQTxRORNlSAy');
 
+
+function formSubmitHandler(event) {
+  //event.preventDefault();
+  var form = $(this);
+  // Disable the submit button to prevent repeated clicks
+  $('form').find('button').prop('disabled', true);
+
+  Stripe.card.createToken(form, stripeResponseHandler);
+
+  // Prevent the form from submitting with the default action
+  return false;
+}
+
 function stripeResponseHandler(status, response) {
   var form = $('#payment-form');
 
   if (response.error) {
     // Show the errors on the form
-    $('form').find('.payment-errors').text(response.error.message);
+    form.find('.payment-errors').text(response.error.message);
     //$('form').find('button').prop('disabled', false);
   } else {
     // response contains id and card, which contains additional card details
     var token = response.id;
     // Insert the token into the form so it gets submitted to the server
-    $('form').append($('<input type="hidden" name="stripeToken" />').val(token));
+    form.append($('<input type="hidden" name="stripeToken" />').val(token));
     // and submit
-    $('form').get(0).submit();
-
-    //     $('form').get(0).submit(function() {
-    //   if ($('input:first').val() === 'correct') {
-    //     $('.validated').text('Validated...').show();
-    //     return;
-    //   } else {
-    //     $('.validated').text("Not valid!").show().fadeOut(1000);
-    //     event.preventDefault();
-    //   }
+    $('#payment-form').off("submit", formSubmitHandler);
+    form.get(0).submit();
   };
 };
 
 $(function($) {
-  $('#payment-form').submit(function(event) {
-    //event.preventDefault();
-    var form = $(this);
-    debugger;
-    // Disable the submit button to prevent repeated clicks
-    //$('form').find('button').prop('disabled', true);
-
-    Stripe.card.createToken(form, stripeResponseHandler);
-
-    // Prevent the form from submitting with the default action
-    return false;
-  });
+  $('#payment-form').submit(formSubmitHandler);
 });
 
 
