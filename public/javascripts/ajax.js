@@ -1,5 +1,5 @@
 var App = App || {};
-var hostname = "arcane-escarpment-7767.herokuapp.com";
+var hostname = 'localhost:3000';
 
 $(document).ready(function() {
 
@@ -144,7 +144,7 @@ $(document).ready(function() {
     var type = $(this).data('obj-type');
     var classSelector = '.' + type + '-item';
     var oid = $(this).parents(classSelector).data('id');
-    var delUrl = 'http://' + hostname + '/users' + type + 's/' + oid;
+    var delUrl = 'http://' + hostname + '/' + type + 's/' + oid;
 
     $.ajax({
       url: delUrl,

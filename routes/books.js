@@ -27,7 +27,8 @@ router.get('/:id', function(req, res) {
       set.sendStatus(404);
     }
     res.render('book-view', {
-      book: book
+      book: book,
+      user: req.user
     });
   });
 });

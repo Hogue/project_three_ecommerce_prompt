@@ -5,36 +5,38 @@ var express = require('express'),
   jade = require('jade'),
   fs = require('fs'),
   User = require('../models/users.js'),
+  Order = require('../models/orders.js'),
+  Book = require('../models/books.js'),
   util = require('util');
-  async = require('async');
+async = require('async');
 
 
 router.get('/', jsonParser);
 router.get('/', function(req, res, next) {
   User.find({}, function(err, usersList) {
-    if(err) {
+    if (err) {
       res.send("error retrieving users");
     } else {
       async.each(usersList, function(user, done) {
         user.orders(function(err, orders) {
-          if(err) {
+          if (err) {
             console.log("it didn't work, shit");
             next(err);
           }
           user.orderList = orders;
           console.log("add orders to %s ", user.email);
           done();
-        })
-      }, function(err, data){
-        if(err) {
+        });
+      }, function(err, data) {
+        if (err) {
           next(err);
         }
         console.log(usersList);
         res.json(usersList);
         res.status(200);
-    });
-  };
- });
+      });
+    }
+  });
 });
 
 
@@ -59,14 +61,66 @@ router.get('/:id/orders', jsonParser);
 router.get('/:id/orders', function(req, res) {
   User.find({
     _id: req.params.id
-  }, function(err, ordersFound) {
+  }, function(err, userFound) {
     if (err) {
       console.log(err.name);
       res.send(err.name);
     } else {
-      console.log(ordersFound);
-      res.json(ordersFound.orders);
+      res.render('history', {
+        orderList: userFound.Orders
+      });
       res.status(200);
+    }
+  });
+});
+
+var tempBook = {};
+
+router.post('/:id/addtocart', jsonParser);
+router.post('/:id/addtocart', function(req, res){
+
+});
+
+
+router.post('/:id/orders', jsonParser);
+router.post('/:id/orders', function(req, res) {
+  var orderIds = [];
+  User.findOne({
+    _id: req.params.id
+  }, function(err, userFound) {
+    if (err) {
+      console.log(err.name);
+      res.send(err.name);
+    } else {
+      // console.log(userFound);
+      orderIds = userFound.Orders;
+      console.log('Order IDS: ' + orderIds);
+      orderIds.forEach(function(orderID) {
+        Order.findOne({
+          _id: orderID
+        }, function(err, orderFound) {
+          if (err) {
+            console.log(err);
+          } else {
+            bookList = orderFound.books;
+            console.log(bookList);
+            bookList.forEach(function(bookId) {
+              var cart = [];
+              Book.findOne({
+                _id: bookId
+              }, function(err, book) {
+                cart.push(book);
+                console.log('cart status: ' + cart);
+              });
+            });
+            console.log('Cart: ', cart);
+            res.render('cart', {
+              cart: cart,
+              user: req.user
+            });
+          }
+        });
+      });
     }
   });
 });

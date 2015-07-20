@@ -18,7 +18,7 @@ router.post('/login', jsonParser);
 router.post('/login', function(req, res, next){
   console.log(req.body);
   next();
-})
+});
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',

@@ -1,0 +1,22 @@
+extend layout
+
+block content
+    .row
+      .col.s8
+        .orders
+            table.striped
+                thead
+                    tr
+                        th(data-field="order-id") Order ID
+                        th(data-field="order-date") Date
+                        th(data-field="order-books") Books
+                tbody
+                    for order in orderList
+                        tr.order-item(data-id="#{order._id}")
+                            td #{order._id}
+                            td #{order.date}
+                            td #{order.books}
+                            td
+                              a(href='/orders/#{order._id') View Order
+
+    include layout_scripts

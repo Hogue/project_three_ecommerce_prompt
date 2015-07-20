@@ -20,10 +20,10 @@ html
             else
               include logged-out-menu
         ul.side-nav#shopping-cart
-          if (order)
+          if (cart)
             li
               a(href="/checkout")
-            for book in user.orders.currentCart
+            for book in cart
               li
                 a(href='/books/#{book._id}') #{book.title}
 

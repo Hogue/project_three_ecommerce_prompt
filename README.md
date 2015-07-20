@@ -1,5 +1,18 @@
 # project_three_ecommerce_prompt
 
+## Live Page:
+[Nozama Books](http://arcane-escarpment-7767.herokuapp.com)
+
+
+### Instructions:
+1. Git clone this repo
+2. Run `npm install` in the main directory
+3. Run `npm start` or go to the above link to see live!
+
+
+
+##Project Details:
+
 ### User Stories
 User stories -
 
